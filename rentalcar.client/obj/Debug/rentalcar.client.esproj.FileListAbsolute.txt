@@ -1,0 +1,3 @@
+C:\Users\Admin\Desktop\RentalCar\rentalcar.client\obj\Debug\rentalcar.client.esproj.CoreCompileInputs.cache
+E:\Thuctap\Project_Final\hihi\rental-car\rentalcar.client\obj\Debug\rentalcar.client.esproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\New\rental-car\rentalcar.client\obj\Debug\rentalcar.client.esproj.CoreCompileInputs.cache

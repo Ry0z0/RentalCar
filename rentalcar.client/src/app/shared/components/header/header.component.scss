@@ -1,0 +1,65 @@
+.container-fluid {
+    background: linear-gradient(98.3deg, rgb(0, 0, 0) 10.6%, rgb(255, 0, 0) 97.7%);
+    height: 100px;
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  }
+  
+  .logo .fa-solid{
+      font-size: 46px;
+      color: white;
+      width: 50px;
+      
+  }
+  .logo{
+    padding-left: 10%;
+  }
+  .logo p{
+    padding-top: 3%;
+      font-size: 30px;
+      color: white;
+      margin: 0.2em 0 0 0.5em;
+  }
+  
+  .header {
+    width: 100%;
+    height: 100px;
+  }
+  
+  .nav-about a{
+    margin: 15px;
+    position: relative;
+  }
+  
+  .nav-login a{
+    position: relative;
+  }
+  
+  
+  .vertical-line{
+      width: 1px;
+      height: 100px;
+      background-color: white;
+  }
+  .vertical-line1 {
+    background-color: white;
+    width: 100%;
+    height: 1px;
+  }
+  .nav-login .vertical-line{
+      margin: 0px 10px 0px 10px;
+      height: 30px;
+  }
+  .dropdown-menu {
+    background-color: #4f4f4f; /* Same as nav background */
+  }
+  
+  .dropdown-menu .dropdown-item {
+    color: white;
+  }
+  
+  .dropdown-menu .dropdown-item:hover {
+    background-color: #6f6f6f; /* Slightly lighter gray for hover */
+  }

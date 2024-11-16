@@ -1,0 +1,561 @@
+.AddCar {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.AddCarHeader {
+  font-size: 18px;
+  background-color: #c1bcbc;
+}
+
+// Arrow
+.arrow-steps .step {
+  font-size: 14px;
+  text-align: center;
+  color: #000000;
+  cursor: pointer;
+  margin: 0 3px;
+  padding: 10px 10px 10px 30px;
+  min-width: 180px;
+  float: left;
+  position: relative;
+  background-color: #a2f0e0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: background-color 0.2s ease;
+  width: 24%;
+}
+
+.arrow-steps .step:after,
+.arrow-steps .step:before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: -16px;
+  width: 0;
+  height: 0;
+  border-top: 38px solid transparent;
+  border-bottom: 39px solid transparent;
+  border-left: 17px solid #a2f0e0;
+  z-index: 2;
+  transition: border-color 0.2s ease;
+}
+
+.arrow-steps .step:before {
+  right: auto;
+  left: 0;
+  border-left: 17px solid #fff;
+  z-index: 0;
+}
+
+.arrow-steps .step:first-child:before {
+  border: none;
+}
+
+.arrow-steps .step:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.arrow-steps .step span {
+  position: relative;
+}
+
+.arrow-steps .step span:before {
+  opacity: 0;
+  content: "✔";
+  position: absolute;
+  top: -2px;
+  left: -20px;
+}
+
+.arrow-steps .step.done span:before {
+  opacity: 1;
+  -webkit-transition: opacity 0.3s ease 0.5s;
+  -moz-transition: opacity 0.3s ease 0.5s;
+  -ms-transition: opacity 0.3s ease 0.5s;
+  transition: opacity 0.3s ease 0.5s;
+}
+
+.arrow-steps .step.current {
+  color: #fff;
+  background-color: #00ccf5;
+}
+
+.arrow-steps .step.current:after {
+  border-left: 17px solid #00ccf5;
+}
+
+.content {
+  display: none;
+  margin-top: 20px;
+}
+
+.content.active {
+  display: block;
+}
+
+// Step 1
+
+.FillInfo {
+  margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  label {
+    font-size: 20px;
+    font-weight: bold;
+
+    span {
+      color: red;
+    }
+  }
+
+  .row {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .input-text,
+  .input-dropdown {
+    width: 50%;
+
+    input {
+      width: 100%;
+      height: 40px;
+      padding: 5px;
+    }
+  }
+}
+
+.LabelProcess1 {
+  width: 50%;
+}
+
+.input-dropdown {
+  display: flex;
+  align-self: center;
+
+  input {
+    width: 90%;
+    padding: 5px;
+  }
+
+  div {
+    width: 10%;
+  }
+}
+.FillInfoHd div {
+  margin: 0 auto;
+}
+
+.AddCarInfo {
+  background-color: #ffffff;
+}
+
+.dropdown-toggle {
+  border-radius: 0 !important;
+}
+
+.trans-fuel-options {
+  display: flex;
+  width: 50%;
+}
+
+.trans-fuel-option {
+  flex: 1;
+  text-align: center;
+  //   padding: 5px 0;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background-color: #f8f9fa;
+  transition: background-color 0.3s ease;
+
+  &:first-child {
+    border-radius: 5px 0 0 5px;
+  }
+
+  &:last-child {
+    border-radius: 0 5px 5px 0;
+  }
+
+  &.active {
+    background-color: #579ae2;
+    color: #fff;
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+}
+
+.file-upload {
+  border: 2px dashed #504f4f;
+  width: 80%;
+  padding: 40px;
+  text-align: center;
+  background-color: #ffffff;
+  // width: 100%;
+  margin: 0 auto;
+
+  .custom-file-upload {
+    display: inline-block;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #186bf0;
+    color: white;
+    border: none;
+    border-bottom: 2px solid #2e5fc9;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+
+  .custom-file-upload:hover {
+    background-color: #2c54aa;
+  }
+
+  .file-input {
+    display: none;
+  }
+
+  .upload-area {
+    i {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.HandleFile {
+  label {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .row {
+    padding-left: 30px;
+  }
+}
+
+.TextFile {
+  display: flex;
+  justify-content: center;
+}
+ul li {
+  cursor: pointer;
+}
+.btnCancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: aliceblue;
+  margin-bottom: 10px;
+}
+
+// .btnCancelSm {
+//   display: flex;
+//   align-items: center;
+//   justify-content: end;
+//   color: aliceblue;
+// }
+
+.hdbtn {
+  .row {
+    padding-left: 30px;
+  }
+}
+
+.btnBack {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+// CSS Process 2
+.dropdown-container {
+  position: relative;
+  width: 200px;
+}
+
+.dropdown {
+  appearance: none;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px 16px;
+  cursor: pointer;
+}
+
+.dropdown option {
+  padding: 10px;
+}
+
+.SearchAddress {
+  position: relative;
+}
+
+.SearchAddress input {
+  padding-right: 40px;
+}
+
+.SearchAddress i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.FillInfoProcess2 {
+  .row {
+    padding-left: 40px;
+  }
+  label {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  .input-text {
+    input {
+      width: 100%;
+      height: 40px;
+      padding: 5px;
+    }
+  }
+
+  input {
+    width: 30%;
+    height: 40px;
+    padding: 5px;
+  }
+  .input-dropdown {
+    display: flex;
+    align-self: center;
+
+    input {
+      width: 90%;
+      padding: 5px;
+    }
+
+    div {
+      width: 10%;
+    }
+  }
+}
+
+.fix-height {
+  width: 90% !important;
+  height: 270px;
+  width: 80%;
+  max-height: 270px;
+}
+
+.Fconsum {
+  display: flex;
+  align-items: center;
+}
+.Fconsum input {
+  width: 90%;
+  padding: 5px;
+}
+
+.Fconsum p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.btn-custom {
+  // background-color: #bce6de;
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #b4f8ec;
+  --bs-btn-border-color: #909494;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #27dbff;
+  --bs-btn-hover-border-color: #f8fcfe;
+  --bs-btn-focus-shadow-rgb: 130, 138, 145;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #27dbff;
+  --bs-btn-active-border-color: #9a9c9e;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #d3dae1;
+  --bs-btn-disabled-border-color: #eaeef2;
+}
+
+.Device {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.ChooseDevice {
+  display: block;
+  margin-top: 45px;
+  width: 100%;
+  input[type="checkbox"] {
+    transform: scale(1.5);
+  }
+}
+
+.Box-Device {
+  width: 35%;
+  background-color: #bf6464;
+  height: 180px;
+  margin: 0 auto;
+}
+
+.ContentDevice {
+  width: 70%;
+}
+
+.Choose {
+  width: 20%;
+}
+
+// CSS Process 3
+.HandleCost {
+  display: flex;
+  align-items: center;
+}
+.BasePrice {
+  label {
+    font-size: 18px;
+    font-weight: bold;
+    float: inline-end;
+  }
+  width: 50%;
+}
+.InputBasePrice {
+  display: flex;
+  align-items: center;
+  width: 70%;
+
+  input {
+    width: 70%;
+    float: inline-end;
+    height: 40px;
+    padding: 5px;
+  }
+  p {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 16px;
+  }
+}
+
+.deposit label {
+  padding-right: 75px;
+}
+
+.Term {
+  .container {
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 600px;
+    background-color: #eeeeee;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(159, 153, 153, 0.1);
+  }
+
+  .textarea-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .textarea-group label {
+    margin-bottom: 10px;
+  }
+
+  .textarea-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    max-height: 160px;
+    height: 160px;
+  }
+
+  .HandleTerm {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .ChooseTerm {
+    width: 50%;
+
+    input {
+      margin-left: 70px;
+      margin-right: 20px;
+    }
+    input[type="checkbox"] {
+      transform: scale(1.5);
+    }
+    label {
+      font-size: 18px;
+    }
+  }
+}
+
+.HandleSubForm {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  width: 80%;
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+// Step 4
+.AllContentP4 {
+  .row {
+    padding-left: 80px;
+  }
+}
+
+.InfoCar {
+  .row {
+    padding-left: 170px;
+    margin-top: 30px;
+  }
+  .starr i {
+    margin-right: 5px;
+    font-size: 25px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+
+  div {
+    margin-bottom: 5px;
+  }
+  font-size: 20px;
+  font-weight: bold;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.dropdown-menu {
+  max-height: 230px;
+  overflow-y: auto;
+}
+.carousel-inner {
+  width: 100%;
+}
+
+.fixed-size {
+  height: 350px; /* Set a fixed height */
+  object-fit: cover; /* Maintain aspect ratio and cover the area */
+}

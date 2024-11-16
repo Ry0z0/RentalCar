@@ -1,0 +1,83 @@
+.auth-background {
+    background-image: url('https://i.pinimg.com/736x/6e/a3/44/6ea344dc73ef9310eb5a49de34988ca1.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: brightness(1); /* Đảm bảo hình ảnh không bị tối */
+  }
+  
+    .auth-container {
+      width: 90%;
+      max-width: 1000px;
+      margin: 2rem auto;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      position: relative;
+    }
+    .auth-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    .auth-close a {
+      text-decoration: none;
+      color: black;
+      font-size: 24px;
+    }
+    .auth-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .auth-body {
+      display: flex;
+    }
+    .auth-section {
+      flex: 1;
+      padding: 2rem;
+      text-align: center;
+    }
+    .auth-divider {
+      border-left: 1px solid #ccc;
+      margin: 0 1rem;
+      position: relative;
+    }
+    .auth-divider::before {
+      content: '';
+      position: absolute;
+      top: 40%;
+      left: 0;
+      height: 20%;
+      width: 1px;
+      background: #ccc;
+    }
+    .mb-4 {
+      margin-bottom: 1.5rem;
+    }
+    .custom-input {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .position-relative {
+      position: relative;
+    }
+    
+    .eye-icon {
+      position: absolute;
+      top: 50%;
+      right: 10px; /* Điều chỉnh khoảng cách từ bên phải */
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 18px; /* Điều chỉnh kích thước của biểu tượng nếu cần */
+      color: #666; /* Điều chỉnh màu sắc nếu cần */
+    }
+    .btn-blue {
+      background-color: #0099FF;
+      border-color: #0099FF;
+    }
+  
+  

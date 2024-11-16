@@ -1,0 +1,536 @@
+<section *ngIf="loading" class="loading-indicator">
+  <p>Loading...</p>
+</section>
+
+<section>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="fanpage col-12">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a (click)="gotoHomePage()">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a (click)="gotoListCar()">My car</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Edit details
+            </li>
+          </ol>
+        </nav>
+        <div class="text"><h1>Edit car details</h1></div>
+
+        <div class="outer-frame">
+          <div class="container car-list">
+            <div class="row car-item">
+              <div class="col-md-7">
+                <div
+                  id="carouselExample"
+                  class="carousel slide"
+                  data-bs-ride="carousel"
+                >
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img
+                        src="image/sky.jpg"
+                        class="d-block w-100 carousel-img fixed-size"
+                        alt="..."
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="image/sky.jpg"
+                        class="d-block w-100 carousel-img fixed-size"
+                        alt="..."
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="image/sky.jpg"
+                        class="d-block w-100 carousel-img fixed-size"
+                        alt="..."
+                      />
+                    </div>
+                  </div>
+                  <button
+                    class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#carouselExample"
+                    data-bs-slide="prev"
+                  >
+                    <span
+                      class="carousel-control-prev-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button
+                    class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#carouselExample"
+                    data-bs-slide="next"
+                  >
+                    <span
+                      class="carousel-control-next-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="car-details">
+                  <h2>{{ car.name }}</h2>
+                  <p>Price: {{ car.basePrice | number }} VND/day</p>
+                  <p>Locations: {{ car.address }}</p>
+                  <div class="status-container">
+                    <label for="status" class="status-label">Status:</label>
+                    <select id="status" class="status-select" [(ngModel)]="car.active">
+                      <option [ngValue]="true">Available</option>
+                      <option [ngValue]="false">Not Available</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- nav -->
+        <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
+          <li class="nav-item current">
+            <a
+              class="nav-link active"
+              id="basic-info-tab"
+              data-toggle="tab"
+              role="tab"
+              aria-controls="basic-info"
+              aria-selected="true"
+              #process1
+              >Basic Information</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="details-tab"
+              data-toggle="tab"
+              role="tab"
+              aria-controls="details"
+              aria-selected="false"
+              #process2
+              >Details</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="pricing-tab"
+              data-toggle="tab"
+              role="tab"
+              aria-controls="pricing"
+              aria-selected="false"
+              #process3
+              >Pricing</a
+            >
+          </li>
+        </ul>
+        <!-- Content for basic info -->
+        <div id="Basic" class="content current" #BasicInfo>
+          <div class="tab-content border p-3" id="myTabContent">
+            <div
+              class="tab-pane fade show active"
+              id="basic-info"
+              role="tabpanel"
+              aria-labelledby="basic-info-tab"
+            >
+              <table class="table mt-3 border">
+                <tr>
+                  <td class="col-md-6">License plate:</td>
+                  <td class="col-md-6">{{ car.licensePlate }}</td>
+                </tr>
+                <tr>
+                  <td>Brand name:</td>
+                  <td>{{ car.brand }}</td>
+                </tr>
+                <tr>
+                  <td>Production year:</td>
+                  <td>{{ car.productionYears }}</td>
+                </tr>
+                <tr>
+                  <td>Transmission:</td>
+                  <td>{{ car.transmissionType }}</td>
+                </tr>
+                <tr>
+                  <td>Color:</td>
+                  <td>{{ car.color }}</td>
+                </tr>
+                <tr>
+                  <td>Model:</td>
+                  <td>{{ car.model }}</td>
+                </tr>
+                <tr>
+                  <td>No. of seats:</td>
+                  <td>{{ car.numberOfSeats }}</td>
+                </tr>
+                <tr>
+                  <td>Fuel:</td>
+                  <td>{{ car.fuelType }}</td>
+                </tr>
+              </table>
+              <table class="table mt-3 border">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Note</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Registration paper</td>
+                    <td>Verified</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Certificate of Inspection</td>
+                    <td>Verified</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Insurance</td>
+                    <td>Not available</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- Content for Details -->
+        <div id="Detail" class="content" #Details>
+          <div class="tab-content border p-3">
+            <!-- Section 1: Mileage and Address -->
+            <div class="card mb-4">
+              <div class="card-body">
+                <form (ngSubmit)="updateCarDetail()">
+                  <table class="table mt-3 border">
+                    <tr>
+                      <td class="col-md-6">License plate:</td>
+                      <td class="col-md-6">
+                        <input
+                          type="text"
+                          [(ngModel)]="car.licensePlate"
+                          name="licensePlate"
+                          class="form-control"
+                          required
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Brand name:</td>
+                      <td>
+                        <input
+                          type="text"
+                          [(ngModel)]="car.brand"
+                          name="brand"
+                          class="form-control"
+                          required
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Production year:</td>
+                      <td>
+                        <input
+                          type="number"
+                          [(ngModel)]="car.productionYears"
+                          name="productionYears"
+                          class="form-control"
+                          required
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Transmission:</td>
+                      <td>
+                        <input
+                          type="text"
+                          [(ngModel)]="car.transmissionType"
+                          name="transmissionType"
+                          class="form-control"
+                          required
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Color:</td>
+                      <td>
+                        <input
+                          type="text"
+                          [(ngModel)]="car.color"
+                          name="color"
+                          class="form-control"
+                          required
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Model:</td>
+                      <td>
+                        <input
+                          type="text"
+                          [(ngModel)]="car.model"
+                          name="model"
+                          class="form-control"
+                          required
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>No. of seats:</td>
+                      <td>
+                        <input
+                          type="number"
+                          [(ngModel)]="car.numberOfSeats"
+                          name="numberOfSeats"
+                          class="form-control"
+                          required
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Fuel:</td>
+                      <td>
+                        <input
+                          type="text"
+                          [(ngModel)]="car.fuelType"
+                          name="fuelType"
+                          class="form-control"
+                          required
+                        />
+                      </td>
+                    </tr>
+                  </table>
+                  <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+                
+              </div>
+            </div>
+
+            <!-- Section 2: Additional Functions -->
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Additional functions:</label>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="custom-control custom-checkbox">
+                        <input
+                          type="checkbox"
+                          class="custom-control-input"
+                          id="bluetooth"
+                          disabled
+                        />
+                        <label class="custom-control-label" for="bluetooth"
+                          ><i class="fa fa-bluetooth"></i> Bluetooth</label
+                        >
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input
+                          type="checkbox"
+                          class="custom-control-input"
+                          id="gps"
+                          disabled
+                        />
+                        <label class="custom-control-label" for="gps"
+                          ><i class="fa fa-map-marker-alt"></i> GPS</label
+                        >
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input
+                          type="checkbox"
+                          class="custom-control-input"
+                          id="camera"
+                          disabled
+                        />
+                        <label class="custom-control-label" for="camera"
+                          ><i class="fa fa-camera"></i> Camera</label
+                        >
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="custom-control custom-checkbox">
+                        <input
+                          type="checkbox"
+                          class="custom-control-input"
+                          id="sunroof"
+                          disabled
+                        />
+                        <label class="custom-control-label" for="sunroof"
+                          ><i class="fa fa-sun"></i> Sun roof</label
+                        >
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input
+                          type="checkbox"
+                          class="custom-control-input"
+                          id="childlock"
+                          disabled
+                        />
+                        <label class="custom-control-label" for="childlock"
+                          ><i class="fa fa-lock"></i> Child lock</label
+                        >
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input
+                          type="checkbox"
+                          class="custom-control-input"
+                          id="childseat"
+                          disabled
+                        />
+                        <label class="custom-control-label" for="childseat"
+                          ><i class="fa fa-child"></i> Child seat</label
+                        >
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="custom-control custom-checkbox">
+                        <input
+                          type="checkbox"
+                          class="custom-control-input"
+                          id="dvd"
+                          disabled
+                        />
+                        <label class="custom-control-label" for="dvd"
+                          ><i class="fa fa-compact-disc"></i> DVD</label
+                        >
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input
+                          type="checkbox"
+                          class="custom-control-input"
+                          id="usb"
+                          disabled
+                        />
+                        <label class="custom-control-label" for="usb"
+                          ><i class="fa fa-usb"></i> USB</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3: Images -->
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Images <span class="text-danger">*</span></label>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="frontImage">Front:</label>
+                      <div class="img-placeholder img-dropzone">
+                        <input type="file" id="frontImage" required />
+                        <i class="fa fa-image"></i>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="backImage">Back:</label>
+                      <div class="img-placeholder img-dropzone">
+                        <input type="file" id="backImage" required />
+                        <i class="fa fa-image"></i>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="leftImage">Left:</label>
+                      <div class="img-placeholder img-dropzone">
+                        <input type="file" id="leftImage" required />
+                        <i class="fa fa-image"></i>
+                        <span class="upload-instruction"
+                          >Drag and drop<br />OR<br />Select file</span
+                        >
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="rightImage">Right:</label>
+                      <div class="img-placeholder img-dropzone">
+                        <input type="file" id="rightImage" required />
+                        <i class="fa fa-image"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <small class="form-text text-muted"
+                    >Please include full 4 images of your vehicle</small
+                  ><br />
+                  <small class="form-text text-muted"
+                    >File type: .jpg, .jpeg, .png, .gif</small
+                  >
+                </div>
+                <div class="form-group text-right">
+                  <button type="reset" class="btn btn-secondary">
+                    Discard
+                  </button>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content for pricing -->
+        <div id="Princ" class="content" #Princing>
+          <div class="tab-content border p-3">
+            <div class="card-body">
+              <!-- Content  below card -->
+              <div class="tab-content mt-3">
+                <div class="tab-pane container active" id="pricing">
+                  <form (ngSubmit)="updateCarDetail()">
+                    <div class="row">
+                      <label for="basePrice" class="col-sm-2 col-form-label"
+                        >Base price:</label
+                      >
+                      <div class="col-sm-4">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="basePrice"
+                          [(ngModel)]="car.basePrice"
+                          name="basePrice"
+                        />
+                      </div>
+                      <label class="col-sm-2 col-form-label">VND/Day</label>
+                    </div>
+                    <div class="row">
+                      <label for="deposit" class="col-sm-2 col-form-label"
+                        >Required deposit:</label
+                      >
+                      <div class="col-sm-4">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="deposit"
+                          [(ngModel)]="car.deposit"
+                          name="deposit"
+                        />
+                      </div>
+                      <label class="col-sm-2 col-form-label">VND</label>
+                    </div>
+                    <div class="form-group text-right">
+                      <button type="reset" class="btn btn-secondary">
+                        Discard
+                      </button>
+                      <button type="button" class="btn btn-primary" (click)="updateCarDetail()">Save</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

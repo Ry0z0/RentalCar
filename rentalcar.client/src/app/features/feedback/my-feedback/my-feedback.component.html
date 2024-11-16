@@ -1,0 +1,101 @@
+<section>
+  <div class="container">
+    <header>
+      <a href="#">Home > My Reports</a>
+      <h1>My Feedback</h1>
+      <p>Average Ratings</p>
+      <div class="rating">
+        <h2>
+          <span *ngIf="avgStar !== null && avgStar !== undefined; else loading">{{ avgStar }}</span>
+        </h2>
+        <ng-template #loading>Loading...</ng-template>
+        <div class="stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+        </div>
+      </div>
+    </header>
+    <nav class="tabs">
+      <button 
+        [ngClass]="{ 'active-button': stateOfStar === 0, 'inactive-button': stateOfStar !== 0 }" 
+        (click)="onStarClick(0)">All (<span *ngIf="starAll !== null && starAll !== undefined; else loading">{{ starAll }}</span>)
+      </button>
+      <button 
+        [ngClass]="{ 'active-button': stateOfStar === 5, 'inactive-button': stateOfStar !== 5 }" 
+        (click)="onStarClick(5)">5 Stars (<span *ngIf="star5 !== null && star5 !== undefined; else loading">{{ star5 }}</span>)
+      </button>
+      <button 
+        [ngClass]="{ 'active-button': stateOfStar === 4, 'inactive-button': stateOfStar !== 4 }" 
+        (click)="onStarClick(4)">4 Stars (<span *ngIf="star4 !== null && star4 !== undefined; else loading">{{ star4 }}</span>)
+      </button>
+      <button 
+        [ngClass]="{ 'active-button': stateOfStar === 3, 'inactive-button': stateOfStar !== 3 }" 
+        (click)="onStarClick(3)">3 Stars (<span *ngIf="star3 !== null && star3 !== undefined; else loading">{{ star3 }}</span>)
+      </button>
+      <button 
+        [ngClass]="{ 'active-button': stateOfStar === 2, 'inactive-button': stateOfStar !== 2 }" 
+        (click)="onStarClick(2)">2 Stars (<span *ngIf="star2 !== null && star2 !== undefined; else loading">{{ star2 }}</span>)
+      </button>
+      <button 
+        [ngClass]="{ 'active-button': stateOfStar === 1, 'inactive-button': stateOfStar !== 1 }" 
+        (click)="onStarClick(1)">1 Star (<span *ngIf="star1 !== null && star1 !== undefined; else loading">{{ star1 }}</span>)
+      </button>
+    </nav>
+    
+
+    <div class="container mt-4" *ngIf="feedbacks.length > 0; else noFeedback">
+      <div class="feedback-item card p-3" *ngFor="let feedback of feedbacks">
+        <div class="row">
+          <div class="col-md-2 text-center">
+            <img src="image/hue.jpg" class="rounded-circle profile-img" alt="User Profile" />
+          </div>
+          <div class="col-md-8">
+            <p class="mb-1"><strong>Booking Car: {{ feedback.carName || 'Loading...' }}</strong></p>
+            <p class="feedback-text mb-1">{{ feedback.content }}</p>
+            <div class="row">
+              <div class="col-md-4">
+                <img src="image/Nissan Navara El 2017.jpg" class="img-fluid car-img" alt="Car Image" />
+              </div>
+              <div class="col-md-8">
+                <p class="mb-1"><strong>Car Info Here</strong></p>
+                <p class="mb-1">From: {{ feedback.dateTime | date: 'dd/MM/yyyy - hh:mm a' }}</p>
+                <p>To: {{ feedback.dateTime | date: 'dd/MM/yyyy - hh:mm a' }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2 text-right">
+            <div class="stars mb-2">
+              <ng-container *ngFor="let star of createArray(feedback.ratings)">
+                <span>★</span>
+              </ng-container>
+              <ng-container *ngFor="let emptyStar of createArray(5 - feedback.ratings)">
+                <span>☆</span>
+              </ng-container>
+            </div>
+            <p class="text-muted">{{ feedback.dateTime | date: 'dd/MM/yyyy hh:mm a' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #noFeedback>
+      <p>No feedback available for the selected rating.</p>
+    </ng-template>
+
+    <div class="pagination-container">
+      <ul class="pagination">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a class="page-link"  (click)="onPageChange(currentPage - 1)">«</a>
+        </li>
+        <li class="page-item" *ngFor="let page of createArray(totalPages); let i = index" [class.active]="currentPage === (i + 1)">
+          <a class="page-link"  (click)="onPageChange(i + 1)">{{ i + 1 }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <a class="page-link"  (click)="onPageChange(currentPage + 1)">»</a>
+        </li>
+      </ul>
+      <div class="per-page">
+        <input type="number" class="form-control" [(ngModel)]="itemsPerPage" (change)="onPageChange(1)" min="1" style="width: 50px; text-align: center" />
+        <span class="ml-2">per page</span>
+      </div>
+    </div>
+  </div>
+</section>

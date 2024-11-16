@@ -1,0 +1,31 @@
+<ng-container *ngIf="isStandalonePage(); else mainLayout">
+    <router-outlet></router-outlet>
+  </ng-container>
+  
+  <ng-template #mainLayout>
+    <app-header></app-header>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+    <app-footer></app-footer>
+  </ng-template>
+  
+
+<!-- -------------------------------------- -->
+
+<!-- <app-login-signup></app-login-signup> -->
+<!-- <app-confirm-email></app-confirm-email> -->
+<!-- <app-reset-password></app-reset-password> -->
+<!-- <app-header></app-header> -->
+<!-- <app-footer></app-footer> -->
+<!-- <app-home-page></app-home-page> -->
+<!-- <app-my-profile></app-my-profile> -->
+<!-- <app-add-car></app-add-car> -->
+<!-- <app-book-car></app-book-car> -->
+<!-- <app-my-wallet></app-my-wallet> -->
+<!-- <app-my-feedback></app-my-feedback> -->
+<!-- <app-thumbview></app-thumbview> -->
+<!-- <app-edit-car></app-edit-car> -->
+<!-- <app-list-search></app-list-search> -->
+<!-- <app-list-mybooking></app-list-mybooking> -->
+<!-- <app-mybooking-detail></app-mybooking-detail> -->

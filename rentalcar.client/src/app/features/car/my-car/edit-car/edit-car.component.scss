@@ -1,0 +1,281 @@
+.fanpage {
+  width: 85%;
+}
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.table {
+  margin-top: 20px;
+}
+
+.carousel-inner img {
+  height: 300px;
+  object-fit: cover;
+}
+
+.nav-tabs {
+  margin-top: 20px;
+}
+
+.nav-item .nav-link {
+  color: #000;
+}
+.nav-item {
+  cursor: pointer;
+}
+
+.nav-item .nav-link.active {
+  font-weight: bold;
+}
+
+.breadcrumb {
+  /* background-color: #f8f9fa; */
+  padding: 0;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: ">";
+}
+
+.carousel-indicators li {
+  background-color: #000;
+}
+
+.border {
+  border: 1px solid gray;
+}
+
+.tab-content table {
+  width: 100%;
+}
+
+.tab-content td {
+  padding: 0.5rem;
+}
+
+.note {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+.table thead th {
+  background-color: gray;
+}
+
+.table th,
+.table td {
+  border: 1px solid gray;
+}
+
+.content {
+  display: none;
+}
+
+.content.current {
+  display: block;
+}
+/* Basic-Information */
+/* #Basic {
+    border: 2px solid gray;
+    padding: 20px;
+    border-radius: 10px; 
+  } */
+
+#myTabContent {
+  border: 2px solid gray; /* Add border to the tab content */
+  border-radius: 10px; /* Optional: To add rounded corners */
+  padding: 20px; /* Optional: To add padding inside */
+}
+
+.table {
+  border: 2px solid gray; /* Add border to each table */
+  border-radius: 10px; /* Optional: To add rounded corners */
+  margin-bottom: 20px; /* Optional: To add space between tables */
+}
+
+.table thead {
+  border-bottom: 2px solid gray; /* Add border to the table header */
+}
+
+.table td,
+.table th {
+  border: 1px solid gray; /* Add border to table cells */
+}
+
+/* Details */
+
+/* #Detail {
+    border: 2px solid gray;
+    padding: 20px;
+    border-radius: 10px; Optional:  
+  } */
+
+.card {
+  margin-bottom: 20px;
+  border: 2px solid gray; /* Add border to each card */
+  border-radius: 10px; /* Optional: To add rounded corners to each card */
+  padding: 20px; /* Optional: To add padding inside each card */
+}
+
+.img-dropzone {
+  border: 2px dashed gray;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  position: relative;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-dropzone input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.img-dropzone .fa-image {
+  font-size: 3em;
+  color: gray;
+}
+
+.upload-instruction {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1em;
+  color: gray;
+  text-align: center;
+}
+
+.form-text {
+  margin-top: 10px;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.custom-control-label {
+  display: flex;
+  align-items: center;
+}
+
+.custom-control-label i {
+  margin-right: 10px;
+}
+
+.tab-content.mt-3 {
+  border: 2px solid gray; /* Add border to tab content */
+  border-radius: 10px; /* Optional: To add rounded corners */
+  padding: 20px; /* Optional: To add padding inside */
+}
+
+.form-check {
+  margin-bottom: 10px; /* Optional: To add space between checkboxes */
+}
+
+.button-price {
+  /* border-top: 2px solid gray; Add top border to separate button section */
+  padding-top: 10px; /* Optional: To add space above buttons */
+}
+
+.fixed-size {
+  height: 300px; /* Set a fixed height */
+  object-fit: cover; /* Maintain aspect ratio and cover the area */
+}
+
+.breadcrumb {
+  background-color: transparent;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: ">";
+}
+
+.breadcrumb a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  padding: 20px;
+}
+body {
+  font-family: Arial, sans-serif;
+}
+
+.outer-frame {
+  border: 2px solid #ccc;
+  //   padding: 20px;
+  margin: 3px;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.car-list {
+  margin: 20px 0;
+}
+
+.fixed-size {
+  height: 300px; /* Set a fixed height */
+  object-fit: cover; /* Maintain aspect ratio and cover the area */
+}
+
+.car-details {
+  margin-left: 20px;
+}
+
+.car-actions .bgtn {
+  margin-right: 10px;
+}
+
+.status.stopped {
+  color: red;
+}
+.status-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.status-label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.status-select {
+  width: 150px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.status-option {
+  color: yellow;
+}
+
+.status-option.available {
+  color: green;
+}
+
+.status-option.stopped {
+  color: red;
+}
+.status-option.booked {
+  color: blue;
+}

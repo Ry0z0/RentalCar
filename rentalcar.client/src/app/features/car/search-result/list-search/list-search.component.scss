@@ -1,0 +1,453 @@
+.search-car {
+  /* Thanh trên cùng */
+  .top-bar {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #eaeaea;
+    padding: 10px 20px;
+  }
+
+  .top-bar a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+  }
+
+  .top-bar a:hover {
+    text-decoration: underline;
+  }
+
+  /* Phần tìm kiếm */
+  .search-bar {
+    background-image: url("https://e0.pxfuel.com/wallpapers/286/834/desktop-wallpaper-7680x2160-7680x2160-firewatch.jpg");
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  .search-bar h4 {
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .search-bar input[type="text"],
+  .search-bar input[type="date"],
+  .search-bar input[type="time"] {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+  }
+
+  .search-bar .form-control {
+    margin-right: 10px;
+  }
+
+  .search-bar .d-flex {
+    display: flex;
+    align-items: center;
+  }
+
+  .search-bar .d-flex .form-control {
+    margin-right: 10px;
+  }
+
+  .search-bar .btn-search {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 7px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .search-bar .btn-search:hover {
+    background-color: #0056b3;
+  }
+
+  /* Căn chỉnh Flexbox */
+  .row {
+    display: flex;
+    justify-content: center; /* Căn giữa các phần tử */
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .col-md-6 {
+    flex: 1;
+  }
+
+  .d-flex input {
+    width: 100%;
+    max-width: 150px; /* Giới hạn chiều rộng của input */
+  }
+
+  .d-flex {
+    gap: 10px; /* Khoảng cách giữa các phần tử */
+  }
+
+  /* Center the button */
+  .text-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  /* Phân trang */
+  .pagination {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .pagination .page-item {
+    display: inline;
+  }
+
+  .pagination .page-link {
+    color: #007bff;
+    text-decoration: none;
+    padding: 8px 12px;
+    border: 1px solid #eaeaea;
+    border-radius: 4px;
+    margin: 0 2px;
+  }
+
+  .pagination .page-link:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  .pagination .page-item.active .page-link {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+  }
+
+  /* Car Card Flex Alignment */
+  .car-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .car-info {
+    padding: 15px;
+  }
+
+  .car-item {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .col-md-3 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .stars {
+    color: gold;
+    font-size: 24px; /* Adjust the font size to make stars larger */
+  }
+
+  .available {
+    color: green;
+  }
+
+  .divider {
+    border: 0;
+    height: 1px;
+    background: #e0e0e0;
+    margin-top: 20px;
+  }
+
+  /* Add small spacing between text and colon */
+  .car-info div span {
+    display: inline-block;
+    margin-right: 5px; /* Adjust the margin as needed */
+  }
+  // phần thumb và list
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .search-results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .results-title {
+    flex-grow: 1;
+  }
+
+  .results-title h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .results-title p {
+    margin: 5px 0 0 0;
+    font-size: 16px;
+    color: #555;
+  }
+
+  .results-filters {
+    display: flex;
+    align-items: center;
+  }
+  .results-filters i {
+    font-size: 25px;
+  }
+  .filter {
+    cursor: pointer;
+  }
+  .filter:hover {
+    color: #a15151;
+  }
+  .results-filters .actived {
+    color: #a15151;
+  }
+  .results-filters .actived:hover {
+    cursor: pointer;
+    // color: #6d1f0c;
+  }
+  .results-filters .actived {
+    cursor: pointer;
+    color: #a15151;
+  }
+
+  .view-toggle {
+    display: flex;
+    margin-right: 20px;
+  }
+
+  .view-toggle .btn {
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #007bff;
+    border-radius: 4px;
+    margin-right: 5px;
+  }
+
+  .view-toggle .btn.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  .sort-dropdown .form-control {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    height: 38px; /* Ensure the height matches the buttons */
+  }
+
+  .sort-dropdown select {
+    border: none;
+    outline: none;
+    background: none;
+    appearance: none;
+  }
+}
+.content {
+  display: none;
+}
+
+.content.current {
+  display: block;
+}
+
+.list-view {
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+
+  .car-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .car-table th,
+  .car-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+
+  .car-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  .car-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .car-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  .car-table img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 2px 0;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  .btn-success {
+    background-color: #28a745;
+    color: white;
+  }
+
+  .btn-success:hover {
+    background-color: #218838;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+}
+
+.thumbview {
+  /* Phần kết quả tìm kiếm */
+  .search-results {
+    margin-top: 30px;
+  }
+
+  .search-results h2 {
+    font-weight: bold;
+  }
+
+  .search-results .results-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .results-filters .view-toggle .btn {
+    border: 1px solid #ccc;
+    margin-right: 5px;
+    padding: 5px 10px;
+  }
+
+  .results-filters .view-toggle .btn i {
+    font-size: 1.2rem;
+  }
+
+  .results-filters .form-group {
+    margin-left: auto;
+  }
+
+  .results-filters .form-control {
+    padding: 5px 10px;
+    width: auto;
+  }
+
+  .result-item {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  .result-item h3 {
+    font-weight: bold;
+  }
+
+  .result-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .result-item p {
+    margin-bottom: 5px;
+  }
+
+  .result-item .btn {
+    margin-top: 10px;
+  }
+
+  .result-item .btn-success {
+    background-color: #28a745;
+    border: none;
+  }
+
+  .result-item .btn-success:hover {
+    background-color: #218838;
+  }
+
+  .result-item .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+
+  .result-item .btn-primary:hover {
+    background-color: #0056b3;
+  }
+
+  .carousel-inner img {
+    height: 200px;
+    object-fit: cover;
+  }
+}
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+

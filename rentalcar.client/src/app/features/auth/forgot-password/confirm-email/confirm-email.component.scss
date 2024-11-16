@@ -1,0 +1,128 @@
+/* Định dạng cho container chính */
+.auth-background {
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: brightness(1); /* Đảm bảo hình ảnh không bị tối */
+}
+.reset-password-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Chiều cao toàn màn hình */
+  text-align: center;
+  padding: 20px;
+}
+
+/* Định dạng cho phần văn bản */
+.reset-password-container p {
+  max-width: 400px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+/* Định dạng cho input */
+.custom-input {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto; /* Căn giữa các input */
+}
+
+/* Định dạng cho nút submit */
+.submit-button {
+  width: 100%;
+  max-width: 200px;
+  margin: 20px auto 0;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 10px; /* Bo tròn góc */
+  background-color: #0099ff; /* Màu xanh */
+  border: none;
+}
+
+.submit-button i {
+  margin-right: 5px;
+}
+
+// pop-up
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+
+  .modal-content {
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid #000000;
+    width: 300px;
+    position: absolute;
+    text-align: center;
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+
+      &:hover,
+      &:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+    p {
+      font-weight: 500;
+    }
+    button {
+      border: none;
+      background-color: #ffffff;
+    }
+
+    .mss-box {
+      width: 265px;
+      margin: 0 auto;
+    }
+
+    .OK {
+      width: 296px;
+      border-top: 1px solid #aaa;
+      margin: 0 auto;
+      button {
+        margin-top: 5px;
+        font-weight: 600;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+.loading-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: #007bff; /* or any color you prefer */
+}
+
+.modal-content .OK button[disabled] {
+  background-color: #ccc; /* Optional: change button color when disabled */
+}
+

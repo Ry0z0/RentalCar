@@ -1,0 +1,245 @@
+<div *ngIf="isLoading" class="loading-overlay">
+  <div class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<div class="container form-container" *ngIf="!isLoading">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a
+          style="
+            cursor: pointer;
+            text-decoration: underline;
+            color: rgb(56, 56, 211);
+          "
+          (click)="gotoHomePage()"
+          >Home</a
+        >
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+    </ol>
+  </nav>
+
+  <h1 class="form-header">My Profile</h1>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        [class.active]="activeTab === 'personal'"
+        id="personal-information-tab"
+        data-toggle="tab"
+        role="tab"
+        aria-controls="personal-information"
+        (click)="switchTab('personal')"
+        >Personal information</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        [class.active]="activeTab === 'security'"
+        id="security-tab"
+        data-toggle="tab"
+        role="tab"
+        aria-controls="security"
+        (click)="switchTab('security')"
+        >Security</a
+      >
+    </li>
+  </ul>
+
+  <!-- Profile Form -->
+  <div *ngIf="activeTab === 'personal'">
+  <form [formGroup]="profileForm">
+    <div class="PersonalInfo">
+      <div class="tab-content mt-3">
+        <div class="tab-pane container active" id="personal">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fullName"
+                  formControlName="fullName"
+                  [(ngModel)]="userDetail.name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="phoneNo">Phone number:</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="phoneNo"
+                  formControlName="phoneNo"
+                  [(ngModel)]="userDetail.phoneNo"
+                />
+              </div>
+              <div class="form-group">
+                <label for="nationalIdNo">National ID No.:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nationalIdNo"
+                  formControlName="nationalIdNo"
+                  [(ngModel)]="userDetail.nationalIdNo"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="dateOfBirth">Date of birth:</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="dateOfBirth"
+                  formControlName="dateOfBirth"
+                  [(ngModel)]="userDetail.dateOfBirth"
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  formControlName="email"
+                  [(ngModel)]="userDetail.email"
+                  readonly
+                />
+              </div>
+              <div class="form-group">
+                <label for="drivingLicense">Driving license:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="drivingLicense"
+                  formControlName="drivingLicense"
+                  [(ngModel)]="userDetail.drivingLicense"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="address">Address:</label>
+          </div>
+          <div class="form-group">
+            <select
+              class="form-control"
+              id="city"
+              formControlName="city"
+              (change)="selectCity($event)"
+            >
+              <option>Select City/Province</option>
+              <option *ngFor="let city of cities" [value]="city.id">
+                {{ city.name }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select
+              class="form-control"
+              id="district"
+              formControlName="district"
+              (change)="selectDistrict($event)"
+            >
+              <option>Select District</option>
+              <option *ngFor="let district of districts" [value]="district.id">
+                {{ district.name }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select
+              class="form-control"
+              id="ward"
+              formControlName="ward"
+              (change)="selectWard($event)"
+            >
+              <option>Select Ward</option>
+              <option *ngFor="let ward of wards" [value]="ward.id">
+                {{ ward.name }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="houseNumber"
+              formControlName="houseNumber"
+              placeholder="House number, Street"
+            />
+          </div>
+          <div class="button-profile">
+            <button type="button" class="btn btn-secondary">
+              Change Password
+            </button>
+            <button type="button" class="btn btn-primary" (click)="onSave()">
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="activeTab === 'security'">
+  <form [formGroup]="passwordForm" (ngSubmit)="onChangePassword()">
+    <div class="form-group">
+      <label for="oldPassword">Old Password <span class="text-danger">*</span></label>
+      <input
+        type="password"
+        class="form-control"
+        id="oldPassword"
+        formControlName="oldPassword"
+        required
+      />
+      <div *ngIf="passwordForm.get('oldPassword')?.invalid && passwordForm.get('oldPassword')?.touched" class="alert alert-danger">
+        Old password is required.
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="newPassword">New Password <span class="text-danger">*</span></label>
+      <input
+        type="password"
+        class="form-control"
+        id="newPassword"
+        formControlName="newPassword"
+        required
+      />
+      <div *ngIf="passwordForm.get('newPassword')?.invalid && passwordForm.get('newPassword')?.touched" class="alert alert-danger">
+        Password must be at least 7 characters long.
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="confirmNewPassword">Confirm New Password <span class="text-danger">*</span></label>
+      <input
+        type="password"
+        class="form-control"
+        id="confirmNewPassword"
+        formControlName="confirmNewPassword"
+        required
+      />
+      <div *ngIf="passwordForm.errors?.['mismatch'] && passwordForm.get('confirmNewPassword')?.touched" class="alert alert-danger">
+        Passwords do not match.
+      </div>
+    </div>
+    
+    <div class="button-profile">
+      <button type="button" class="btn btn-secondary" (click)="onDiscardPasswordChange()">Discard</button>
+      <button type="submit" class="btn btn-primary" [disabled]="loading">
+        <i class="fa-solid fa-lock"></i>
+        <span *ngIf="!loading">Save</span>
+        <span *ngIf="loading">Please wait...</span>
+      </button>
+    </div>
+  </form>
+</div>
+</div>

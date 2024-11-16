@@ -1,0 +1,8 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:4200",
+"LaunchCommand": "npm start",
+"WorkingDirectory": "E:\\Thuctap\\Project_Final\\Final\\rental-car\\RentalCar.Server\\..\\rentalcar.client",
+"MaxTimeoutInSeconds": "120"
+}
+}

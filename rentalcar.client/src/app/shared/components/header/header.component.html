@@ -1,0 +1,55 @@
+<div class="container-fluid d-flex justify-content-center">
+  <div class="header row">
+    <div class="logo col-6 align-self-center d-flex">
+      <i class="fa-solid fa-car fa-2x my-3"> </i>
+      <p>Rent a car today!</p>
+    </div>
+    <div class="nav col-6 row d-flex align-items-center justify-content-evenly">
+      <div class="col-4 nav-about d-flex">
+        <a href="#">ABOUT US</a>
+      </div>
+      
+      <div *ngIf="isLoggedIn; else loggedOut" class="col-3 dropdown nav-login d-flex align-items-center justify-content-evenly">
+        <a
+          class="btn btn-secondary dropdown-toggle"
+          href="#"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Welcome, {{ CustomerDetail.name }}
+        </a>
+        <ul class="dropdown-menu">
+          <li *ngIf="role === 'admin'">
+            <a class="dropdown-item" (click)="gotoAdmin()">User Management Panel</a>
+          </li> 
+          <li *ngIf="role === 'admin'">
+            <a class="dropdown-item" (click)="gotoAdminCar()">Car Management Panel</a>
+          </li>
+          <li *ngIf="role === 'carOwner'|| role === 'customer'">
+            <a class="dropdown-item" (click)="gotoProfile()">My Profile</a>
+          </li>
+          <li *ngIf="role === 'customer'">
+            <a class="dropdown-item" (click)="gotoMyBookings()">My Booking</a>
+          </li>
+          <li *ngIf="role === 'carOwner'">
+            <a class="dropdown-item" (click)="gotoMyCars()">My Cars</a>
+          </li>
+          <li *ngIf="role === 'carOwner' || role === 'customer'">
+            <a class="dropdown-item" (click)="gotoMyWallet()">My Wallet</a>
+          </li>
+          <li *ngIf="role === 'carOwner'">
+            <a class="dropdown-item" (click)="gotoReports()">My Feedback</a>
+          </li>
+          <li><a class="dropdown-item" (click)="logOut()">Logout</a></li>
+        </ul>
+      </div>
+      
+      <ng-template #loggedOut>
+        <div class="col-3 nav-login d-flex align-items-center justify-content-evenly">
+          <a class="btn btn-primary" href="/login-signup">Login</a>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

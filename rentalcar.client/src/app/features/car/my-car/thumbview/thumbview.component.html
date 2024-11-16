@@ -1,0 +1,188 @@
+<div class="container outer-frame">
+  <header>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a (click)="gotoHomePage()">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">MyCar</li>
+      </ol>
+    </nav>
+    <h1>List of Cars</h1>
+  </header>
+  <div class="header d-flex justify-content-between align-items-center mt-3">
+    <button class="bgtn btn btn-primary" (click)="gotoAddCar()">Add Car</button>
+    <select class="form-select w-auto">
+      <option>Newest to Latest</option>
+      <option>Latest to Newest</option>
+    </select>
+  </div>
+
+  <div class="container car-list mt-4">
+    <div class="row car-item" *ngFor="let car of carss">
+      <div class="col-md-6">
+        <div
+          id="carouselExample1"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                [src]="car.images"
+                class="d-block w-100 carousel-img"
+                alt="..."
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="car-details">
+          <h2>{{ car.name }}</h2>
+          <div class="button-container float-end">
+            <button
+              class="btn btn-secondary mb-2"
+              (click)="gotoCarDetail(car.id)"
+            >
+              View details
+            </button>
+            <button
+              class="btn btn-primary"
+              *ngIf="carStatuses[car.id] === 'Pending deposit'"
+              (click)="openModalConfirmDeposit(car.id)"
+            >
+              Confirm Deposit
+            </button>
+
+            <!-- Confirm Payment button (shown if status is 'Pending payment') -->
+            <button
+              class="btn btn-success"
+              *ngIf="carStatuses[car.id] === 'Pending Payment'"
+              (click)="openModalConfirmPayment(car.id)"
+            >
+              Confirm Payment
+            </button>
+          </div>
+          @if(showModalConfirmDeposit){
+          <div class="modal">
+            <div class="modal-content">
+              <div class="ctReturnCar">
+                <h4>Confirm Deposit</h4>
+
+                <div class="text-popup my-3">
+                  <span
+                    >Please comfirm that you have receive the deposit this
+                    booking.</span
+                  ><br />
+                  <span>
+                    This will allow the customer to pick-up the car at the
+                    agrred date and time
+                  </span>
+                </div>
+              </div>
+              <div class="box-returnCar">
+                <div class="returnCar step1">
+                  <button (click)="closeModalConfirmDeposit()">No</button>
+                </div>
+                <div class="returnCar">
+                  <button (click)="btnConfirmDeposit(selectedBookingId)">
+                    Yes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          }
+
+          <!-- Confirm Payment -->
+          @if(showModalConfirmPayment){
+          <div class="modal">
+            <div class="modal-content">
+              <div class="ctReturnCar">
+                <h4>Confirm Payment</h4>
+
+                <div class="text-popup my-2">
+                  <span
+                    >Please comfirm that you have receive the payment for this
+                    booking.</span
+                  >
+                </div>
+              </div>
+              <div class="box-returnCar">
+                <div class="returnCar step1">
+                  <button (click)="closeModalConfirmPayment()">No</button>
+                </div>
+                <div class="returnCar">
+                  <button (click)="btnConfirmPayment(selectedBookingId)">
+                    Yes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          }
+          <div class="ContentShowInfo">
+            <div class="row">
+              <div class="col-5 mt-2">Rating:</div>
+
+              <div class="col-7 starr">
+                <i
+                  *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+                  class="bi bi-star-fill star"
+                  [class.active]="car.ratings > i"
+                ></i>
+              </div>
+              <div class="col-5">No. of ride:</div>
+              <!-- {{ carData.nor }} -->
+              <div class="col-7">{{ car.noOfRides }}</div>
+              <div class="col-5">Price:</div>
+              <!-- {{ carData.basePriceF }} -->
+              <div class="col-7">{{ getFormatPrice(car.basePrice) }} / day</div>
+              <div class="col-5">Location:</div>
+              <!-- {{ carData.address }} -->
+              <div class="col-7">{{ getFormartLocation(car.address) }}</div>
+              <div class="status">
+                <label for="status" class="status-label col-5">Status:</label>
+                <span
+                  class="status-text col-7"
+                  [ngClass]="{
+                    'green-status': carStatuses[car.id] === 'Available' || carStatuses[car.id] === 'Completed',
+                    'blue-status': carStatuses[car.id] === 'Booked',
+                    'red-status': carStatuses[car.id] === 'Pending deposit',
+                    'yellow-status': carStatuses[car.id] === 'Pending Payment'
+                  }"
+                >
+                  {{ carStatuses[car.id] }}
+                </span>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pagination-container">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">«</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li>
+        <li class="page-item"><a class="page-link" href="#">...</a></li>
+        <li class="page-item"><a class="page-link" href="#">»</a></li>
+      </ul>
+      <div class="per-page">
+        <input
+          type="number"
+          class="form-control"
+          value="3"
+          min="1"
+          style="width: 50px; text-align: center"
+        />
+        <span class="ml-2">per page</span>
+      </div>
+    </div>
+
+    <!-- popup -->
+    <!-- Confirm Deposit -->
+  </div>
+</div>

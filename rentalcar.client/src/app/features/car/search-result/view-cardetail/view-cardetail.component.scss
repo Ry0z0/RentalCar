@@ -1,0 +1,127 @@
+/* styles.css */
+
+/* Ensure the Rent Now button is horizontally aligned with the car details */
+.col-md-4.d-flex {
+  height: 100%;
+}
+
+/* Additional padding and margin adjustments for better spacing */
+.container {
+  max-width: 1000px;
+}
+
+.btn-primary {
+  margin-top: 10px;
+}
+
+.tab-content {
+  margin-top: 20px;
+}
+
+.tab-pane p {
+  margin-bottom: 10px;
+}
+
+.tab-pane h5 {
+  margin-top: 20px;
+}
+/* Ensure the Rent Now button is horizontally aligned with the car details */
+.col-md-4.d-flex.flex-row {
+  align-items: flex-start;
+}
+
+/* Adjust the rent button for proper alignment and spacing */
+.rent-button {
+  align-self: flex-start; /* Align the button to the start of the flexbox container */
+}
+
+.rent-button .btn {
+  white-space: nowrap; /* Prevents the text from wrapping inside the button */
+}
+
+/* Spacing between the details and the button */
+.ms-3 {
+  margin-left: 1rem;
+}
+/* Adjust spacing between labels and values */
+.car-details div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.car-details strong {
+  text-align: right;
+  margin-right: 10%; /* Space between label and value */
+}
+
+/* Optional: Adjust the overall margin-bottom of the details */
+.car-details div.mb-2 {
+  margin-bottom: 15px; /* Increase or decrease space between rows */
+}
+/* Adjust spacing between icons and text */
+p {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Adjust the space between each function */
+}
+
+p i {
+  margin-right: 8px; /* Space between the icon and the checkbox */
+  font-size: 16px; /* Adjust icon size if necessary */
+  color: #333; /* Change icon color to suit design */
+}
+
+/* Adjust spacing between columns */
+.col-md-3 {
+  padding-left: 20px;
+}
+
+/* Optional: Adjust checkbox margin to align with text */
+input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+/* Adjust input field spacing */
+.price-input,
+.deposit-input {
+  width: 150px; /* Set a fixed width to align the input fields */
+  margin-left: 10px; /* Add space between label and input */
+}
+
+/* Align checkboxes and text in terms of use */
+p {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px; /* Adjust spacing between rows */
+}
+
+input[type="checkbox"] {
+  margin-right: 8px; /* Space between checkbox and label */
+}
+
+/* Optional: Style for 'Terms of use' header */
+h5 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.info-item strong {
+  min-width: 150px; /* Đặt chiều rộng tối thiểu cho nhãn */
+}
+.location-text {
+  white-space: nowrap;
+}
+.star {
+  font-size: 24px; /* Adjust size as needed */
+  color: #ccc; /* Default star color */
+}
+
+.star.active {
+  color: gold; /* Active star color */
+}

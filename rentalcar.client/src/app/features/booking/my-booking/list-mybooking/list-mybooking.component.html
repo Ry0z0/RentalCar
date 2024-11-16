@@ -1,0 +1,309 @@
+<div>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Add a car step 1 header begin-->
+      <div class="AddCarHeader col-12">
+        <!-- Breadcrumb begin -->
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb my-3 mx-3">
+            <li class="breadcrumb-item">
+              <a
+                style="
+                  cursor: pointer;
+                  text-decoration: underline;
+                  color: rgb(56, 56, 211);
+                "
+                (click)="gotoHomePage()"
+                >Home</a
+              >
+            </li>
+            <li class="breadcrumb-item active">List Booking Car</li>
+          </ol>
+        </nav>
+        <!-- Breadcrumb end -->
+      </div>
+      <!-- Add a car step 1 header end-->
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt-5">
+  <h2 class="ms-5">My Bookings</h2>
+  <div class="row w-100 m-0 align-items-center">
+    <div class="col-md-6" style="text-align: center">
+      <p>You have 4 on-going bookings</p>
+    </div>
+    <div class="col-md-6 d-flex justify-content-center">
+      <select class="form-control mb-3" style="width: auto">
+        <option>Newest to Latest</option>
+        <option>Oldest to Newest</option>
+      </select>
+    </div>
+  </div>
+  <div *ngIf="loading" class="loading-spinner">Loading bookings...</div>
+  <!-- Booking Card 1 -->
+  <div *ngIf="!loading" class="bookings-container">
+    <div *ngFor="let booking of bookings" class="booking-card row w-100 m-0">
+      <div class="col-6">
+        <div id="carouselExampleIndicators" class="carousel slide">
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img [src]="booking.carImg" alt="{{ booking.carName }}" class="d-block w-100" alt="..." />
+
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+      <div class="mt-3 col-md-4">
+        <h1>{{ booking.carName }}</h1>
+        <ul>
+          <li>
+            <strong
+              >From:
+              {{
+                booking.startDateTime | date : "dd/MM/yyyy - hh:mm a"
+              }}</strong
+            >
+          </li>
+          <li>
+            <strong
+              >To:
+              {{ booking.endDateTime | date : "dd/MM/yyyy - hh:mm a" }}</strong
+            >
+          </li>
+        </ul>
+        <p><strong>Number of days:</strong> {{ getNumberOfDays(booking) }}</p>
+        <p><strong>Base price:</strong> {{ booking.basePrice }}</p>
+        <p><strong>Total:</strong> {{ getTotalPrice(booking) | currency }}</p>
+        <p><strong>Deposit:</strong> {{ booking.deposit | currency }}</p>
+        <p><strong>Booking No.:</strong> {{ booking.bookingNo }}</p>
+        <p class="booking-status">
+          Booking status:
+          <span
+            [ngClass]="{
+              'text-success': booking.status === 'Confirmed',
+              'text-warning': booking.status === 'In-progress',
+              'text-muted': booking.status === 'Pending deposit' || booking.status === 'Pending payment' || booking.status === 'Cancelled',
+              'text-info': booking.status === 'Completed'
+            }"
+            >{{ booking.status }}</span
+          >
+        </p>
+      </div>
+      <div class="col-md-2 d-flex flex-column">
+        <button
+          class="btn btn-primary mb-2"
+          (click)="viewDetails(booking.bookingId)"
+        >
+          View details
+        </button>
+    
+        <!-- Confirm Pick-up button only for Confirmed status -->
+        <button
+          *ngIf="booking.status === 'Confirmed'"
+          class="btn btn-success mb-2"
+          (click)="updateBookingStatus(booking.bookingId, 'In-progress')"
+        >
+          Confirm Pick-up
+        </button>
+    
+        <!-- Cancel button only for Confirmed or Pending deposit status -->
+        <button
+          *ngIf="booking.status === 'Confirmed' || booking.status === 'Pending deposit'"
+          class="btn btn-danger mb-2"
+          (click)="updateBookingStatus(booking.bookingId, 'Cancelled')"
+        >
+          Cancel
+        </button>
+    
+        <!-- Return Car button only for In-progress status -->
+        <button
+          *ngIf="booking.status === 'In-progress'"
+          class="btn btn-success mb-2"
+          (click)="openModalReturnCar(booking)"
+        >
+          Return Car
+        </button>
+      </div>
+      <!-- Return car popup-->
+@if(showModalReturnCar){
+  <div class="PopUpRTC">
+    <div class="modal">
+      <div class="modal-content">
+        <div class="ctReturnCar">closeModalAndComplete
+          <h4>Return car</h4>
+      
+          <div class="text-popup my-3">
+            <span>Please confirm to return the car.</span><br />
+      
+            <!-- Hiển thị số tiền có trong ví và số tiền cần thanh toán -->
+            <div class="wallet-info my-2">
+              <span>Wallet Balance: {{ walletBalance }} VND </span><br />
+              <span>Amount to Pay: {{ remainingAmount}} VND </span>
+            </div>
+      
+            <!-- Hiển thị nếu số dư ví lớn hơn số tiền cần thanh toán -->
+            <div *ngIf="remainingAmount > 0 && walletBalance >= remainingAmount">
+              <span>
+                The remaining amount of VND {{ remainingAmount}} will be deducted from your wallet.
+              </span>
+            </div>
+      
+            <!-- Hiển thị nếu số dư ví không đủ -->
+            <div *ngIf="remainingAmount > 0 && walletBalance < remainingAmount">
+              <span>
+                Your wallet balance is insufficient. Please top up your wallet to complete the payment.
+              </span>
+            </div>
+      
+            <!-- Hiển thị nếu exceedingAmount > 0, nghĩa là số tiền thừa sẽ được trả lại -->
+            <div *ngIf="exceedingAmount > 0">
+              <span>
+                The exceeding amount of VND {{ exceedingAmount }} will be returned to your wallet.
+              </span>
+            </div>
+          </div>
+        </div>
+      
+        <div class="box-returnCar">
+          <div class="returnCar step1">
+            <button (click)="closeModalReturnCar()">No</button>
+          </div>
+          <div class="returnCar step1">
+            <!-- Nếu số dư ví không đủ, chuyển hướng đến trang nạp tiền -->
+            <button (click)="handleYesClick()">My Wallet</button>
+          </div>
+          <div class="returnCar step1">
+            <!-- Nút để sử dụng tiền mặt, chuyển trạng thái sang 'Pending Payment' -->
+            <button (click)="handleCashPayment(booking.bookingId)">Use Cash</button>
+          </div>
+          <div class="returnCar step1">
+            <!-- Nếu số dư ví không đủ, chuyển hướng đến trang nạp tiền -->
+            <button (click)="handleCashPayment(booking.bookingId)">BankTF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+  <div class="PopUpRating">
+    @if(showModalGiveRating){
+    <div class="modal">
+      <div class="modal-content">
+        <h4>Rate your trip</h4>
+  
+        <div class="mx-4 my-2">
+          <span>Do you enjoy your trip, please let us know what you think</span>
+        </div>
+        <div class="star-rating">
+          <span
+            *ngFor="let star of stars; let i = index"
+            class="star"
+            [ngClass]="{ 'active': i < rating, 'hover': i < hoverRating }"
+            (mouseover)="highlightStars(i + 1)"
+            (mouseout)="resetStars()"
+            (click)="rate(i + 1)"
+          >
+            <i class="bi bi-star-fill"></i>
+          </span>
+        </div>
+  
+        <div class="review my-2">
+          <textarea
+            class="form-control"
+            id="Review"
+            name="review"
+            [(ngModel)]="reviewContent"
+            placeholder="Give us some review &lt;3"
+          ></textarea>
+        </div>
+        <input type="hidden" [value]="rating" name="rating" />
+        
+        <div class="box-topup mt-2"> 
+          <div class="topup step1">
+            <button (click)="closeModalAndComplete(booking.bookingId)">Skip</button>
+          </div>
+          <div class="topup">
+            <button 
+              [disabled]="rating === 0" 
+              (click)="confirmGiveRating(booking.bookingId) ; submitReview()"
+              
+            >
+              Send Review
+            </button>
+          </div>        
+        </div>
+  
+      </div>
+    </div>
+    }
+  </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="pagination">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="#">&laquo;&laquo;</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li>
+        <li class="page-item"><a class="page-link" href="#">...</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">&raquo;&raquo;</a>
+        </li>
+      </ul>
+      <div class="per-page">
+        <input type="number" class="form-control" value="3" />
+        <span class="ml-2">per page</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

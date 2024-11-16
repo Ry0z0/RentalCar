@@ -1,0 +1,60 @@
+<div class="auth-background">
+  <div class="reset-password-container">
+    <h2 class="text-center">Reset Password</h2>
+    <p class="text-center">
+      Enter the email address associated with your account, and we'll email you
+      with the link to reset your password.
+    </p>
+    <form>
+      <div class="mb-4">
+        <input
+          type="email"
+          class="form-control custom-input"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="Your email address"
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary btn-blue submit-button"
+        [disabled]="loading"
+        (click)="onSubmit()"
+      >
+        <i class="fa-solid fa-lock"></i> 
+        <span *ngIf="!loading">SUBMIT</span> <!-- Text when not loading -->
+        <span *ngIf="loading">Please wait...</span> <!-- Text when loading -->
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- pop-up -->
+@if(showModal){
+<div class="modal">
+  <div class="modal-content">
+      <p class="indented-text">
+        Enter OTP that we sent to your email
+      </p>
+      <input
+          class="form-control custom-input"
+          name="otp"
+          [(ngModel)]="otp"
+          placeholder="Your otp"
+          required
+          style="margin-bottom: 4%;"
+        />
+    <div class="row">
+      <div class="OK">
+        <button (click)="confirmEmail()" [disabled]="loading">OK</button> <!-- Disable button when loading -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Loading spinner (optional) -->
+<div *ngIf="loading" class="loading-spinner">
+  <!-- You can replace this with any spinner you like -->
+  <i class="fa fa-spinner fa-spin"></i> Loading...
+</div>
+}

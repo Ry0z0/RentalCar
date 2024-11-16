@@ -1,0 +1,213 @@
+<section>
+  <div class="wallet-container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a
+            style="
+              cursor: pointer;
+              text-decoration: underline;
+              color: rgb(56, 56, 211);
+            "
+            (click)="gotoHomePage()"
+            >Home</a
+          >
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">My Wallet</li>
+      </ol>
+    </nav>
+
+    <h1>My Wallet</h1>
+    <div class="button-wallet">
+      <div class="title">
+        <h4>Your current balance:</h4>
+      </div>
+      <div class="d-flex justify-content-end mb-3">
+        <button
+          type="button"
+          class="btn btn-withdraw mr-2"
+          (click)="openModalWithDraw()"
+        >
+          Withdraw
+        </button>
+        <button type="button" class="btn btn-topup" (click)="openModalTopUp()">
+          Top-up
+        </button>
+      </div>
+    </div>
+
+    <div>
+      <p class="wallet-balance">{{ myWallet }} VND</p>
+    </div>
+
+    <h4>Transactions</h4>
+
+    <form class="form-inline mb-3">
+      <div class="form-group mr-3">
+        <label for="fromDate" class="mr-2">From</label>
+        <input type="date" class="form-control" id="fromDate" />
+      </div>
+      <div class="form-group mr-3">
+        <label for="toDate" class="mr-2">To</label>
+        <input type="date" class="form-control" id="toDate" />
+      </div>
+    </form>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button class="btn btn-primary me-md-2" type="button">Search</button>
+    </div>
+    <table class="table table-bordered transactions-table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Amount</th>
+          <th>Type</th>
+          <th>Date/time</th>
+          <th>Booking No.</th>
+          <th>Car Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>+10,000,000 VNĐ</td>
+          <td>Top-up</td>
+          <td>12/02/2022 18:00</td>
+          <td>N/A</td>
+          <td>N/A</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>-2,000,000</td>
+          <td>Withdrawal</td>
+          <td>12/02/2022 18:00</td>
+          <td>N/A</td>
+          <td>N/A</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>-18,000,000</td>
+          <td>Pay Deposit</td>
+          <td>12/02/2022 18:00</td>
+          <td>12345678</td>
+          <td>Nissan Navara El 2017</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>+1,000,000</td>
+          <td>Offset final payment</td>
+          <td>12/02/2022 18:00</td>
+          <td>12345678</td>
+          <td>Nissan Navara El 2017</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>+500,000</td>
+          <td>Offset final payment</td>
+          <td>12/02/2022 18:00</td>
+          <td>12345678</td>
+          <td>Nissan Navara El 2017</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>-18,000,000</td>
+          <td>Receive deposit</td>
+          <td>12/02/2022 18:00</td>
+          <td>12345678</td>
+          <td>Nissan Navara El 2017</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pagination-container">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">«</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li>
+        <li class="page-item"><a class="page-link" href="#">...</a></li>
+        <li class="page-item"><a class="page-link" href="#">»</a></li>
+      </ul>
+      <div class="per-page">
+        <input
+          type="number"
+          class="form-control"
+          value="30"
+          min="1"
+          style="width: 50px; text-align: center"
+        />
+        <span class="ml-2">per page</span>
+      </div>
+    </div>
+  </div>
+  @if(showModalTopUp){
+  <div class="modal">
+    <div class="modal-content">
+      <h4>Top-up</h4>
+
+      <div class="mx-4 mt-2">
+        <p>Please select the amount to top-up your wallet</p>
+      </div>
+      <div class="select-price mb-5">
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          [(ngModel)]="selectedAmountTU"
+        >
+          <option *ngFor="let amount of Amounts" [value]="amount">
+            {{ formatCurrency(amount) }}
+          </option>
+        </select>
+      </div>
+      <div class="box-topup mt-5">
+        <div class="topup step1">
+          <button (click)="closeModalTopUp()">Cancel</button>
+        </div>
+        <div class="topup">
+          <button (click)="confirmTopUp()" [disabled]="!selectedAmountTU">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+  <!-- WithDraw -->
+  @if(showModalWithDraw){
+  <div class="modal">
+    <div class="modal-content">
+      <h4>With Draw</h4>
+
+      <div class="mx-4 mt-2">
+        <p>
+          Your current balance is {{ myWallet }} VND. Please select the amount
+          to withdraw form your wallet.
+        </p>
+      </div>
+      <div class="select-price mb-5">
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          [(ngModel)]="selectedAmountWD"
+        >
+          <!-- Tuỳ chọn ban đầu -->
+          <option *ngFor="let amount of filteredAmounts" [value]="amount">
+            {{ formatCurrency(amount) }}
+          </option>
+        </select>
+      </div>
+
+      <div class="box-topup mt-5">
+        <div class="topup step1">
+          <button (click)="closeModalWithDraw()">Cancel</button>
+        </div>
+        <div class="topup">
+          <button (click)="confirmWithDraw()" [disabled]="!selectedAmountWD">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</section>

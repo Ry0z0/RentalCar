@@ -1,0 +1,432 @@
+.booking-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+.booking-card img {
+  max-width: 100%;
+  height: auto;
+}
+.booking-status {
+  font-weight: bold;
+}
+.carousel-indicators {
+  bottom: -20px;
+}
+.container-fluid {
+  padding: 0;
+}
+
+.carousel-inner img {
+  width: 100%; /* Đảm bảo chiều rộng của ảnh chiếm hết carousel */
+  height: 400px; /* Đặt chiều cao cố định cho tất cả các ảnh */
+  object-fit: cover; /* Đảm bảo ảnh được cắt để phù hợp với khung mà không bị biến dạng */
+}
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+.per-page {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+.per-page input {
+  width: 50px;
+  text-align: center;
+}
+.btn-spacing {
+  margin-bottom: 3%; /* Điều chỉnh giá trị này để thêm khoảng cách mong muốn */
+}
+.date-list {
+  list-style: none;
+  padding: 0;
+}
+
+.date-list li {
+  margin-bottom: 10px; /* Khoảng cách giữa các phần tử <li> */
+}
+///sjshs\
+
+.tabs {
+  padding: 15px 0px 0px 30px;
+}
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.status {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.status-confirmed {
+  color: green;
+}
+
+form fieldset {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+legend {
+  font-weight: bold;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="tel"],
+input[type="email"],
+input[type="file"],
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.address {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.address-select {
+  flex: 1 1 45%;
+}
+
+.required {
+  color: red;
+}
+
+.form-actions {
+  text-align: right;
+}
+
+.discard-button,
+.save-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.discard-button {
+  background-color: #ccc;
+  margin-right: 10px;
+}
+
+.save-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.content {
+  display: none;
+}
+
+.content.current {
+  display: block;
+}
+.nav-tabs {
+  margin-top: 20px;
+}
+
+.nav-item .nav-link {
+  color: #000;
+}
+.nav-item {
+  cursor: pointer;
+}
+
+.nav-item .nav-link.active {
+  font-weight: bold;
+}
+.breadcrumb {
+  /* background-color: #f8f9fa; */
+  padding: 0;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: ">";
+}
+
+//   CSS basic info
+.bif {
+  .container {
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .status {
+    text-align: right;
+    margin-bottom: 20px;
+  }
+
+  .status-confirmed {
+    color: green;
+  }
+
+  form fieldset {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  legend {
+    font-weight: bold;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  input[type="tel"],
+  input[type="email"],
+  input[type="file"],
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .address {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .address-select {
+    flex: 1 1 45%;
+  }
+
+  .required {
+    color: red;
+  }
+
+  .form-actions {
+    text-align: center;
+    gap: 10%;
+  }
+  .discard-button,
+  .save-button {
+    padding: 1% 2%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .discard-button {
+    background-color: #ccc;
+    margin-right: 10px;
+  }
+
+  .save-button {
+    background-color: #007bff;
+    color: white;
+  }
+}
+
+// CSS detail
+.ci {
+  .container {
+    max-width: 800px;
+    margin: auto;
+  }
+
+  form fieldset {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  legend {
+    font-weight: bold;
+  }
+
+  .car-info {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .car-info-left,
+  .car-info-right {
+    width: 45%;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+
+  table,
+  th,
+  td {
+    border: 1px solid #ccc;
+  }
+
+  th,
+  td {
+    padding: 10px;
+    text-align: left;
+  }
+
+  .terms {
+    padding-left: 5%;
+  }
+  .terms-of-use {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  label {
+    display: block;
+  }
+
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  .additional {
+    padding-left: 10%;
+  }
+}
+
+// CSS confirm payment
+.cfpm {
+  .wallet {
+    border: 1px solid #ccc;
+    padding: 3% 7%;
+    border-radius: 8px;
+  }
+
+  .wallet h3 {
+    margin-top: 0;
+  }
+
+  .wallet strong {
+    padding: 0 3%;
+  }
+  .wallet p {
+    margin: 10px 0;
+  }
+
+  .wallet-link {
+    color: blue;
+    text-decoration: underline;
+  }
+  .radio-label {
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 20px;
+  }
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+
+  .modal-content {
+    background-color: white;
+    padding-top: 20px;
+    border: 1px solid #888;
+    width: 410px;
+    text-align: center;
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+
+      &:hover,
+      &:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+    p {
+      font-weight: 600;
+    }
+
+    .star-rating {
+      display: flex;
+      justify-content: center;
+    }
+
+    .star {
+      font-size: 1.3em;
+      margin-left: 7px;
+      cursor: pointer;
+      color: rgb(50, 49, 49);
+    }
+
+    .star.hover,
+    .star.active {
+      color: gold;
+    }
+
+    .review {
+      width: 85%;
+      margin: 0 auto;
+      .form-control {
+        height: 200px;
+        max-height: 200px;
+      }
+    }
+
+    .box-topup {
+      display: flex;
+      .topup.step1 {
+        border-top: 1px solid #aaa;
+        border-right: 1px solid #aaa;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .topup {
+        width: 50%;
+        border-top: 1px solid #aaa;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        button {
+          border-radius: 5px;
+          border: none;
+          background-color: #ffffff;
+        }
+      }
+
+      .topup button:hover {
+        color: #1ddc27;
+      }
+      .topup.step1 button:hover {
+        color: #979797;
+      }
+    }
+  }
+}

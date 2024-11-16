@@ -1,0 +1,17 @@
+E:\Thuctap\Project_Final\hihi\rental-car\RentalCar.Model\obj\Debug\net6.0\RentalCar.Model.GeneratedMSBuildEditorConfig.editorconfig
+E:\Thuctap\Project_Final\hihi\rental-car\RentalCar.Model\obj\Debug\net6.0\RentalCar.Model.AssemblyInfoInputs.cache
+E:\Thuctap\Project_Final\hihi\rental-car\RentalCar.Model\obj\Debug\net6.0\RentalCar.Model.AssemblyInfo.cs
+E:\Thuctap\Project_Final\hihi\rental-car\RentalCar.Model\obj\Debug\net6.0\RentalCar.Model.csproj.CoreCompileInputs.cache
+E:\Thuctap\Project_Final\hihi\rental-car\RentalCar.Model\obj\Debug\net6.0\RentalCar.Model.sourcelink.json
+D:\Semester6\FinalProject\FE_BEProject_last\rental-car\RentalCar.Model\bin\Debug\net6.0\RentalCar.Model.deps.json
+D:\Semester6\FinalProject\FE_BEProject_last\rental-car\RentalCar.Model\bin\Debug\net6.0\RentalCar.Model.dll
+D:\Semester6\FinalProject\FE_BEProject_last\rental-car\RentalCar.Model\bin\Debug\net6.0\RentalCar.Model.pdb
+D:\Semester6\FinalProject\FE_BEProject_last\rental-car\RentalCar.Model\obj\Debug\net6.0\RentalCar.Model.GeneratedMSBuildEditorConfig.editorconfig
+D:\Semester6\FinalProject\FE_BEProject_last\rental-car\RentalCar.Model\obj\Debug\net6.0\RentalCar.Model.AssemblyInfoInputs.cache
+D:\Semester6\FinalProject\FE_BEProject_last\rental-car\RentalCar.Model\obj\Debug\net6.0\RentalCar.Model.AssemblyInfo.cs
+D:\Semester6\FinalProject\FE_BEProject_last\rental-car\RentalCar.Model\obj\Debug\net6.0\RentalCar.Model.csproj.CoreCompileInputs.cache
+D:\Semester6\FinalProject\FE_BEProject_last\rental-car\RentalCar.Model\obj\Debug\net6.0\RentalCar.Model.sourcelink.json
+D:\Semester6\FinalProject\FE_BEProject_last\rental-car\RentalCar.Model\obj\Debug\net6.0\RentalCar.Model.dll
+D:\Semester6\FinalProject\FE_BEProject_last\rental-car\RentalCar.Model\obj\Debug\net6.0\refint\RentalCar.Model.dll
+D:\Semester6\FinalProject\FE_BEProject_last\rental-car\RentalCar.Model\obj\Debug\net6.0\RentalCar.Model.pdb
+D:\Semester6\FinalProject\FE_BEProject_last\rental-car\RentalCar.Model\obj\Debug\net6.0\ref\RentalCar.Model.dll

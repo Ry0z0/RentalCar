@@ -1,0 +1,9 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Explicitly set line endings for specific files
+*.cs     text diff=csharp
+*.csproj text
+*.sln    text
+*.config text
+*.xml    text

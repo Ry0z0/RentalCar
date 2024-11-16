@@ -1,0 +1,412 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a
+        style="
+          cursor: pointer;
+          text-decoration: underline;
+          color: rgb(56, 56, 211);
+        "
+        (click)="gotoHomePage()"
+        >Home</a
+      >
+    </li>
+    <li class="breadcrumb-item">
+      <a
+        style="
+          cursor: pointer;
+          text-decoration: underline;
+          color: rgb(56, 56, 211);
+        "
+        (click)="gotoMyBookings()"
+        >My Bookings</a
+      >
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Booking Details</li>
+  </ol>
+</nav>
+<div class="container-fluid mt-5">
+  <h2 class="ms-5">Bookings Detail</h2>
+</div>
+<div class="booking-card row w-100 m-0">
+  <div class="col-12 col-md-6">
+    <div id="carouselExampleIndicators2" class="carousel slide">
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators2"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators2"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators2"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img [src]="CarDetail?.images" class="d-block w-100" alt="Car Image" />
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleIndicators2"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleIndicators2"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  <div class="mt-3 col-12 col-md-4">
+    <h1>{{ CarDetail?.name }}</h1>
+    <ul>
+      <li>
+        <strong
+          >From:
+          {{
+            bookingDetail?.startDateTime | date : "dd/MM/yyyy - hh:mm a"
+          }}</strong
+        >
+      </li>
+      <li>
+        <strong
+          >To:
+          {{
+            bookingDetail?.endDateTime | date : "dd/MM/yyyy - hh:mm a"
+          }}</strong
+        >
+      </li>
+    </ul>
+    <p>
+      <strong>Number of days:</strong>
+      {{ bookingDetail ? getNumberOfDays(bookingDetail) : "N/A" }}
+    </p>
+    <p><strong>Base price:</strong> {{ CarDetail?.basePrice }}</p>
+    <p>
+      <strong>Total:</strong>
+      {{
+        bookingDetail && CarDetail
+          ? getTotalCost(bookingDetail, CarDetail)
+          : "N/A"
+      }}
+    </p>
+    <p><strong>Deposit:</strong> {{ CarDetail?.deposit | currency }}</p>
+    <p><strong>Booking No.:</strong> {{ bookingDetail?.bookingNo }}</p>
+    <p class="booking-status">
+      Booking status:
+      <span
+        [ngClass]="{
+          'text-success': bookingDetail?.status === 'Confirmed',
+          'text-warning': bookingDetail?.status === 'In-progress',
+          'text-muted': bookingDetail?.status === 'Pending deposit' || bookingDetail?.status === 'Pending payment' || bookingDetail?.status === 'Cancelled',
+          'text-info': bookingDetail?.status === 'Completed'
+        }"
+        >{{ bookingDetail?.status }}</span
+      >
+    </p>
+  </div>
+</div>
+<!-- nav -->
+<ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
+  <li class="nav-item current">
+    <a
+      class="nav-link active"
+      id="basic-info-tab"
+      data-toggle="tab"
+      role="tab"
+      aria-controls="basic-info"
+      aria-selected="true"
+      #process1
+      >Booking Information</a
+    >
+  </li>
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      id="details-tab"
+      data-toggle="tab"
+      role="tab"
+      aria-controls="details"
+      aria-selected="false"
+      #process2
+      >Car Infomation</a
+    >
+  </li>
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      id="pricing-tab"
+      data-toggle="tab"
+      role="tab"
+      aria-controls="pricing"
+      aria-selected="false"
+      #process3
+      >Confirm Payment</a
+    >
+  </li>
+</ul>
+
+<div id="Basic" class="content current bif" #BookingInfo>
+  <fieldset>
+    <div class="row">
+      <legend>Driver's Information</legend>
+      <div class="col-md-6">
+        <label for="renter-full-name"
+          >Full Name: <span class="required">*</span></label
+        >
+        <input
+          type="text"
+          [(ngModel)]="CustomerDetail.name"
+          id="renter-full-name"
+          readonly
+        />
+        <label for="renter-phone"
+          >Phone number: <span class="required">*</span></label
+        >
+        <input
+          type="tel"
+          [(ngModel)]="CustomerDetail.phoneNo"
+          id="renter-phone"
+          readonly
+        />
+        <label for="renter-id"
+          >National ID No.: <span class="required">*</span></label
+        >
+        <input
+          type="text"
+          [(ngModel)]="CustomerDetail.nationalIdNo"
+          id="renter-id"
+          readonly
+        />
+      </div>
+
+      <div class="col-md-6">
+        <label for="renter-dob">Date of birth:</label>
+        <input
+          type="date"
+          [(ngModel)]="CustomerDetail.dateOfBirth"
+          id="renter-dob"
+          readonly
+        />
+        <label for="renter-email"
+          >Email address: <span class="required">*</span></label
+        >
+        <input
+          type="email"
+          [(ngModel)]="CustomerDetail.email"
+          id="renter-email"
+          readonly
+        />
+        <label for="renter-license">Driving license:</label>
+        <input
+          type="text"
+          id="renter-license"
+          [(ngModel)]="CustomerDetail.drivingLicense"
+          class="upload-button"
+          readonly
+        />
+      </div>
+    </div>
+
+    <div class="address">
+      <input
+        type="text"
+        id="driver-street"
+        [(ngModel)]="CustomerDetail.address"
+        readonly
+      />
+    </div>
+  </fieldset>
+
+  <!-- <div class="form-actions" style="padding: 1%;">
+    <button type="button" class="discard-button">Discard</button>
+    <button type="submit" class="save-button" (click)="updateCustomerDetail()">Save</button>
+  </div> -->
+</div>
+
+<div id="Detail" class="content ci" #CarInfo>
+  <fieldset>
+    <legend>Car Information</legend>
+    <div class="car-info">
+      <div class="car-info-left">
+        <p><strong>License plate: </strong>{{ CarDetail?.licensePlate }}</p>
+        <p><strong>Brand name: </strong>{{ CarDetail?.brand }}</p>
+        <p>
+          <strong>Production year: </strong>{{ CarDetail?.productionYears }}
+        </p>
+        <p><strong>Transmission: </strong>{{ CarDetail?.transmissionType }}</p>
+      </div>
+      <div class="car-info-right">
+        <p><strong>Color: </strong>{{ CarDetail?.color }}</p>
+        <p><strong>Model: </strong>{{ CarDetail?.model }}</p>
+        <p><strong>No. of seats: </strong>{{ CarDetail?.numberOfSeats }}</p>
+        <p><strong>Fuel: </strong>{{ CarDetail?.fuelType }}</p>
+      </div>
+    </div>
+    <h3>Documents:</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Name</th>
+          <th>Note</th>
+          <th>Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Registration paper</td>
+          <td>Verified</td>
+          <td><a>File1.PDF</a></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Certificate of Inspection</td>
+          <td>Verified</td>
+          <td><a >File2.PDF</a></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Insurance</td>
+          <td>Not available</td>
+          <td>Not available</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><strong>Mileage: </strong>{{ CarDetail?.mileage }}</p>
+    <p><strong>Fuel consumption:</strong> {{ CarDetail?.fuelConsumption }}</p>
+    <p><strong>Address:</strong> {{ CarDetail?.address }}</p>
+    <p><strong>Description:</strong></p>
+    <p>
+      {{ CarDetail?.description }}
+    </p>
+    <h3>Additional functions:</h3>
+    <div class="additional-functions row">
+      <div class="additional col-md-4">
+        <label>
+          <input type="checkbox" [checked]="isChecked('bluetooth')" /> Bluetooth
+        </label>
+        <label>
+          <input type="checkbox" [checked]="isChecked('gps')" /> GPS
+        </label>
+        <label>
+          <input type="checkbox" [checked]="isChecked('camera')" /> Camera
+        </label>
+      </div>
+      <div class="additional col-md-4">
+        <label>
+          <input type="checkbox" [checked]="isChecked('sunroof')" /> Sun roof
+        </label>
+        <label>
+          <input type="checkbox" [checked]="isChecked('childlock')" /> Child
+          lock
+        </label>
+        <label>
+          <input type="checkbox" [checked]="isChecked('childseat')" /> Child
+          seat
+        </label>
+      </div>
+      <div class="additional col-md-4">
+        <label>
+          <input type="checkbox" [checked]="isChecked('dvd')" /> DVD
+        </label>
+        <label>
+          <input type="checkbox" [checked]="isChecked('usb')" /> USB
+        </label>
+      </div>
+    </div>
+    <h3>Terms of use:</h3>
+<div class="terms-of-use row">
+  <div class="terms col-md-2">
+    <label>
+      <input type="checkbox" [checked]="isTermChecked('nosmoking')" /> No smoking
+    </label>
+    <label>
+      <input type="checkbox" [checked]="isTermChecked('nopet')" /> No pet
+    </label>
+  </div>
+  <div class="terms col-md-2">
+    <label>
+      <input type="checkbox" [checked]="isTermChecked('nofoodincar')" /> No food in car
+    </label>
+    <label>
+      <input type="checkbox" [checked]="isTermChecked('other')" /> Other
+    </label>
+  </div>
+</div>
+  </fieldset>
+</div>
+<div id="Princ" class="content cfpm" #ConfirmPayment>
+  <div class="wallet">
+    <label for="wallet" class="radio-label">My Wallet</label>
+    <p><strong>Current balance:</strong> {{ CustomerDetail.wallet || 0 }} VND</p>
+    <p>Please make sure to have sufficient balance when you return the car.</p>
+    <p>Go to <a routerLink="/my-wallet" class="wallet-link">My wallet</a></p>
+  </div>
+</div>
+
+@if(showModalGiveRating){
+<div class="modal">
+  <div class="modal-content">
+    <h4>Rate your trip</h4>
+
+    <div class="mx-4 my-2">
+      <span>Do you enjoy your trip, please let us know what you think</span>
+    </div>
+    <div class="star-rating">
+      <span
+        *ngFor="let star of stars; let i = index"
+        class="star"
+        [ngClass]="{ 'active': i &lt; rating, 'hover': i &lt; hoverRating }"
+        (mouseover)="highlightStars(i + 1)"
+        (mouseout)="resetStars()"
+        (click)="rate(i + 1)"
+      >
+        <i class="bi bi-star-fill"></i>
+      </span>
+    </div>
+
+    <div class="review my-2">
+      <textarea
+        class="form-control"
+        id="Review"
+        name="review"
+        placeholder="Give us some review &lt;3"
+      ></textarea>
+    </div>
+
+    <input type="hidden" [value]="rating" name="rating" />
+
+    <div class="box-topup mt-2">
+      <div class="topup step1">
+        <button (click)="closeModalGiveRating()">Skip</button>
+      </div>
+      <div class="topup">
+        <button (click)="confirmGiveRating()">Send Review</button>
+      </div>
+    </div>
+  </div>
+</div>
+}

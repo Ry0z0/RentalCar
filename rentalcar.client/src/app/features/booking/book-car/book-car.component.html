@@ -1,0 +1,601 @@
+<section class="BookCar">
+  <!-- Header -->
+  <div>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Add a car step 1 header begin-->
+        <div class="AddCarHeader col-12">
+          <!-- Breadcrumb begin -->
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-3 mx-3">
+              <li class="breadcrumb-item">
+                <a
+                  style="
+                    cursor: pointer;
+                    text-decoration: underline;
+                    color: rgb(56, 56, 211);
+                  "
+                  (click)="gotoHomePage()"
+                  >Home</a
+                >
+              </li>
+
+              <li class="breadcrumb-item active">Book Car</li>
+            </ol>
+          </nav>
+          <!-- Breadcrumb end -->
+        </div>
+        <!-- Add a car step 1 header end-->
+      </div>
+    </div>
+  </div>
+
+  <form #bookCarForm="ngForm" (ngSubmit)="addBooking()">
+    <div class="BookCarInfo">
+      <!-- Booking Details Begin-->
+
+      <div class="contentBK">
+        <div class="container-fluid boxBookingDetails previewBD">
+          <div class="row">
+            <div class="col-10">
+              <div class="bookingDetails my-3">
+                <h3>Booking Details</h3>
+                <ul class="my-4">
+                  <li class="my-3">Location Of Car: {{ carData.location }}</li>
+
+                  <li class="my-3">
+                    <div class="pvPickTime">
+                      <div class="abcPV">Pick up date and time:</div>
+                      <div class="inputPV">
+                        {{ getFormattedDateTime(bookingData.startDateTime) }}
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="my-3">
+                    <div class="pvPickTime">
+                      <div class="abcPV">Return date and time:</div>
+                      <div class="inputPV">
+                        {{ getFormattedDateTime(bookingData.endDateTime) }}
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="changeDetails my-3">
+                <i class="bi bi-pencil-square mx-2"></i>
+                <span (click)="gotoSearch()">Change details</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Booking Details End-->
+
+      <!-- Process begin -->
+      <div>
+        <div class="wrapper">
+          <div class="arrow-steps clearfix mx-5">
+            <div class="step current my-3" #process1>
+              <span> <h5>Step 1: Booking Infomation</h5></span>
+            </div>
+            <div class="step my-3" #process2>
+              <span><h5>Step 2: Payment</h5></span>
+            </div>
+            <div class="step my-3" #process3>
+              <span><h5>Step 3: Finish</h5></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Process end -->
+      <div class="container-fluid mb-5">
+        <!-- BC1 begin-->
+        <div id="bookCar-step-1" class="content active" #bookCar1>
+          <div class="AllContentP1BC">
+            <!-- Show Infomation Of Car -->
+            <div class="container-fluid ShowInfomationBC">
+              <div class="row">
+                <div class="col-6 bovienl">
+                  <div class="ImgShowInfo my-4">
+                    <img [src]="carData.images" alt="Images Of Car" />
+                  </div>
+                  <div class="ContentShowInfo">
+                    <div class="row">
+                      <div class="col-12">
+                        <h2>{{ carData.fullName }}</h2>
+                      </div>
+                      <div class="col-3 mt-2">Rating:</div>
+                      <div class="col-9 starr">
+                        <i
+                          *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+                          class="bi bi-star-fill star"
+                          [class.active]="avg > i"
+                        ></i>
+                      </div>
+                      <div class="col-3">No. of ride:</div>
+                      <div class="col-9">{{ carData.nor }}</div>
+                      <div class="col-3">Price:</div>
+                      <div class="col-9">{{ carData.basePriceF }} / day</div>
+                      <div class="col-3">Location:</div>
+                      <div class="col-9">{{ carData.address }}</div>
+                      <div class="col-3">Status:</div>
+                      <div class="col-9 text-success">Available</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 bovienr">
+                  <div class="bookingSum my-5">
+                    <div><h3 class="text-center">Booking Summary</h3></div>
+                    <div class="hdBS">
+                      <h4>Number of days: {{ rentalDays }}</h4>
+                      <h4>Price per day: {{ carData.basePriceF }} VND</h4>
+                      <hr />
+                      <h4>Total: {{ calculateTotalCost }} VND</h4>
+                      <h4>Deposit: {{ carData.depositF }} VND</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container-fluid">
+              <div class="boxRDInfo">
+                <div class="renter-driver-Info">
+                  <div class="my-5">
+                    <h3 class="text-center">Renter's Infomation</h3>
+                  </div>
+                  <div class="FillInfo px-5">
+                    <div class="row">
+                      <div class="col-6 mb-5 FillInfoRenter-Driver">
+                        <div class="LabelProcess1">
+                          <label for="fullname">Full name: <span>*</span></label
+                          ><br />
+                        </div>
+                        <div class="input-text mt-3">
+                          <input
+                            type="text"
+                            id="fullname"
+                            name="fullName"
+                            [(ngModel)]="customerData.fullName"
+                            readonly
+                          />
+                        </div>
+                      </div>
+
+                      <div class="col-6 mb-5 FillInfoRenter-Driver">
+                        <div class="LabelProcess1">
+                          <label for="DOB">Date of birth: <span>*</span></label
+                          ><br />
+                        </div>
+                        <div class="input-text mt-3">
+                          <input
+                            type="date"
+                            id="DOB"
+                            name="dob"
+                            [(ngModel)]="customerData.dob"
+                            readonly
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-6 mb-5 FillInfoRenter-Driver">
+                        <div class="LabelProcess1">
+                          <label for="phonenum"
+                            >Phone number: <span>*</span></label
+                          ><br />
+                        </div>
+                        <div class="input-text mt-3">
+                          <input
+                            type="text"
+                            id="phonenum"
+                            name="phoneNum"
+                            [(ngModel)]="customerData.phoneNum"
+                            readonly
+                          />
+                        </div>
+                      </div>
+
+                      <div class="col-6 mb-5 FillInfoRenter-Driver">
+                        <div class="LabelProcess1">
+                          <label for="email"
+                            >Email address: <span>*</span></label
+                          ><br />
+                        </div>
+                        <div class="input-text mt-3">
+                          <input
+                            type="text"
+                            id="email"
+                            name="email"
+                            [(ngModel)]="customerData.email"
+                            readonly
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-6 mb-5 FillInfoRenter-Driver">
+                        <div class="LabelProcess1">
+                          <label for="NationalID"
+                            >National ID No.: <span>*</span></label
+                          ><br />
+                        </div>
+                        <div class="input-text mt-3">
+                          <input
+                            type="text"
+                            id="NationalID"
+                            name="nationaolId"
+                            [(ngModel)]="customerData.nationalID"
+                            readonly
+                          />
+                        </div>
+                      </div>
+
+                      <div class="col-6 mb-5 FillInfoRenter-Driver">
+                        <div class="LabelProcess1">
+                          <label for="drivinglc"
+                            >Driving license: <span>*</span></label
+                          ><br />
+                        </div>
+                        <div class="input-test mt-3">
+                          <div class="input-group mb-3">
+                            <input
+                              type="file"
+                              class="form-control"
+                              disabled
+                              name="drivinglicense"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Address -->
+                  <div class="Renter-Driver-Address">
+                    <div class="col-12">
+                      <div class="my-3 text-center">
+                        <label
+                          >Address: <span class="text-danger">*</span></label
+                        >
+                      </div>
+
+                      <div class="FillInfoRenter-Driver">
+                        <div class="input-dropdown mt-3">
+                          <input
+                            type="text"
+                            readonly
+                            name="city"
+                            placeholder="City/Province"
+                            [(ngModel)]="customerData.city"
+                          />
+                          <div class="btn-group">
+                            <button
+                              id="ProductionYear"
+                              type="button"
+                              class="btn btn-custom dropdown-toggle"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
+                              disabled
+                            ></button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="FillInfoRenter-Driver">
+                        <div class="input-dropdown mt-3">
+                          <input
+                            type="text"
+                            readonly
+                            name="district"
+                            placeholder="District"
+                            [(ngModel)]="customerData.district"
+                          />
+                          <div class="btn-group">
+                            <button
+                              id="ProductionYear"
+                              type="button"
+                              class="btn btn-custom dropdown-toggle"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
+                              disabled
+                            ></button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="FillInfoRenter-Driver">
+                        <div class="input-dropdown mt-3">
+                          <input
+                            type="text"
+                            readonly
+                            name="ward"
+                            placeholder="Ward"
+                            [(ngModel)]="customerData.ward"
+                          />
+                          <div class="btn-group">
+                            <button
+                              id="ProductionYear"
+                              type="button"
+                              class="btn btn-custom dropdown-toggle"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
+                              disabled
+                            ></button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="FillInfoRenter-Driver mt-3">
+                        <div class="input-text">
+                          <input
+                            type="text"
+                            name="houseNumber"
+                            placeholder="House, number, Street"
+                            [(ngModel)]="customerData.houseNumber"
+                            readonly
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Driver Infomation -->
+                
+                <!-- Handle button -->
+
+                <div class="hdbtn">
+                  <div class="row">
+                    <div class="col-6 btnBack my-3">
+                      <button
+                        type="button"
+                        class="btn btn-primary step"
+                        (click)="onPrevious()"
+                        [disabled]="currentStepIndex === 0"
+                      >
+                        Back
+                      </button>
+                    </div>
+                    <div class="col-6 my-3">
+                      <button
+                        type="button"
+                        class="btn btn-primary step"
+                        (click)="onNext()"
+                      >
+                        Next
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- BC1 end-->
+
+        <!-- BC2 begin-->
+        <div id="bookCar-step-2" class="content" #bookCar2>
+          <div class="AllContentP2BC">
+            <!-- Show Infomation Of Car -->
+            <div class="container-fluid ShowInfomationBC">
+              <div class="row">
+                <div class="col-6 bovienl">
+                  <div class="ImgShowInfo my-4">
+                    <img src="" alt="Images Of Car" />
+                  </div>
+                  <div class="ContentShowInfo">
+                    <div class="row">
+                      <div class="col-12">
+                        <h2>{{ carData.fullName }}</h2>
+                      </div>
+                      <div class="col-3 mt-2">Rating:</div>
+                      <div class="col-9 starr">
+                        <i
+                          *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+                          class="bi bi-star-fill star"
+                          [class.active]="avg > i"
+                        ></i>
+                      </div>
+                      <div class="col-3">No. of ride:</div>
+                      <div class="col-9">{{ carData.nor }}</div>
+                      <div class="col-3">Price:</div>
+                      <div class="col-9">{{ carData.basePriceF }} / day</div>
+                      <div class="col-3">Location:</div>
+                      <div class="col-9">{{ carData.address }}</div>
+                      <div class="col-3">Status:</div>
+                      <div class="col-9 text-success">Available</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 bovienr">
+                  <div class="bookingSum my-5">
+                    <div><h3 class="text-center">Booking Summary</h3></div>
+                    <div class="hdBS">
+                      <h4>Number of days: {{ calculateRentalDays }}</h4>
+                      <h4>Price per day: {{ carData.basePriceF }} VND</h4>
+                      <hr />
+                      <h4>Total: {{ calculateTotalCost }} VND</h4>
+                      <h4>Deposit: {{ carData.depositF }} VND</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Payment method -->
+            <div class="container-fluid">
+              <div class="boxPM">
+                <div><h3>PLease select your payment method</h3></div>
+
+                <div class="Payment">
+                  <div class="ChoosePM">
+                    <input
+                      type="radio"
+                      id="MyWallet"
+                      name="methodPMMyWallet"
+                      [(ngModel)]="bookingData.paymentMethod"
+                      [value]="'MyWallet'"
+                      required
+                      [disabled]="
+                        !compareValues(customerData.walletU, carData.deposit)
+                      "
+                    />
+                    <label for="MyWallet"> My Wallet</label>
+                  </div>
+                  <div class="ContentPM">
+                    <p>Current Balance:</p>
+                    <p
+                      *ngIf="
+                        compareValues(customerData.walletU, carData.deposit)
+                      "
+                      class="text-success"
+                    >
+                      {{ customerData.wallet }} VND
+                    </p>
+                    <p
+                      *ngIf="
+                        !compareValues(customerData.walletU, carData.deposit)
+                      "
+                      class="text-danger"
+                    >
+                      {{ customerData.wallet }} VND (insufficent)
+                    </p>
+                  </div>
+                </div>
+                <div class="Payment">
+                  <div class="ChoosePM">
+                    <input
+                      type="radio"
+                      id="Cash"
+                      name="methodPMCash"
+                      [(ngModel)]="bookingData.paymentMethod"
+                      [value]="'Cash'"
+                      required
+                    />
+                    <label for="Cash"> Cash</label>
+                  </div>
+                  <div class="ContentPMO">
+                    <p>Our operation will contact you fo further instruction</p>
+                  </div>
+                </div>
+                <div class="Payment">
+                  <div class="ChoosePM">
+                    <input
+                      type="radio"
+                      id="BankTf"
+                      name="methodPMBank"
+                      [(ngModel)]="bookingData.paymentMethod"
+                      [value]="'BankTf'"
+                      required
+                    />
+                    <label for="BankTf"> Bank transfer</label>
+                  </div>
+                  <div class="ContentPMO">
+                    <p>Our operation will contact you fo further instruction</p>
+                  </div>
+                </div>
+
+                <div class="Warnn my-2">
+                  <p>The deposit amount will be deducted from your wallet.</p>
+                </div>
+                <!-- Handle button -->
+                <div style="padding-left: 500px; padding-right: 500px">
+                  <div
+                    *ngIf="!bookCarForm.valid"
+                    class="alert alert-warning text-center"
+                  >
+                    Please fill all required information .
+                  </div>
+                </div>
+
+                <div class="hdbtn">
+                  <div class="row">
+                    <div class="col-6 btnBack my-3">
+                      <button
+                        type="button"
+                        class="btn btn-primary step"
+                        (click)="onPrevious()"
+                        [disabled]="currentStepIndex === 0"
+                      >
+                        Back
+                      </button>
+                    </div>
+                    <div class="col-6 my-3">
+                      <button
+                        type="submit"
+                        class="btn btn-primary step"
+                        [disabled]="!bookCarForm.valid"
+                      >
+                        Confirm Payment
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- BC2 end-->
+
+        <!-- BC3 begin-->
+        <div id="bookCar-step--3" class="content" #bookCar3>
+          <div class="AllContentP3BC">
+            <div class="boxFNPM">
+              <!-- Finish Payment -->
+              <div class="FinishPM">
+                <p>
+                  You've successfully booked {{ carData.fullName }} form
+                  {{ getFormattedDateTime(startBooking) }} to
+                  {{ getFormattedDateTime(endBooking) }}
+                </p>
+                <p>Your booking number is: {{ bookingNumber }}</p>
+                <p>
+                  Our operator will contact you with further guidance about
+                  pickup.
+                </p>
+              </div>
+              <!-- Handle button -->
+              <div class="row">
+                <div class="col-4 hdBtn my-3">
+                  <a
+                    (click)="goHomepage()"
+                    style="
+                      color: black;
+                      text-decoration: underline;
+                      cursor: pointer;
+                    "
+                    >Go to homepage</a
+                  >
+                </div>
+                <div class="col-4 my-3 hdBtn">
+                  <button
+                    type="button"
+                    class="btn btn-secondary step"
+                    (click)="gotoSearch()"
+                  >
+                    Book another car
+                  </button>
+                </div>
+                <div class="col-4 my-3 hdBtn">
+                  <button
+                    type="button"
+                    (click)="goViewBooking()"
+                    class="btn btn-info step"
+                  >
+                    View Booking
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

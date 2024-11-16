@@ -1,0 +1,197 @@
+.breadcrumb {
+  background-color: transparent;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: ">";
+}
+
+.breadcrumb a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.car-list {
+  margin: 20px 0;
+}
+
+.car-item {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.carousel-inner .carousel img {
+  width: 300px;
+  height: 250px;
+  /* Maintain aspect ratio and cover the area */
+}
+
+.car-details {
+  margin-left: 20px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.btn-secondary {
+  background-color: #007bff;
+}
+.status-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.status-label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.status-select {
+  width: 150px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+}
+.pagination {
+  margin: 0;
+}
+.per-page {
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* Optional: Adds some space between per-page and pagination */
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+
+  .modal-content {
+    background-color: white;
+    // padding: 20px;
+    border: 1px solid #888;
+    width: 350px;
+    text-align: center;
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+
+      &:hover,
+      &:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+
+    .ctReturnCar {
+      padding: 20px;
+      margin: 0 auto;
+    }
+
+    .text-popup {
+      font-weight: 600;
+      //   width: 280px;
+    }
+    .box-returnCar {
+      display: flex;
+      .returnCar.step1 {
+        border-top: 1px solid #aaa;
+        border-right: 1px solid #aaa;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .returnCar {
+        width: 50%;
+        border-top: 1px solid #aaa;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        button {
+          border-radius: 5px;
+          border: none;
+          background-color: #ffffff;
+        }
+      }
+
+      .returnCar button:hover {
+        color: #35caa5;
+      }
+      .returnCar.step1 button:hover {
+        color: #848484;
+      }
+    }
+  }
+}
+.ContentShowInfo {
+  .starr i {
+    margin-right: 5px;
+    font-size: 25px;
+  }
+
+  div {
+    margin-bottom: 5px;
+  }
+  font-size: 18px;
+  font-weight: bold;
+}
+.star {
+  font-size: 24px; /* Adjust size as needed */
+  color: #ccc; /* Default star color */
+}
+
+.star.active {
+  color: gold; /* Active star color */
+}
+.green-status {
+  color: green;
+}
+.blue-status {
+  color: rgb(43, 43, 212);
+}
+.red-status {
+  color: rgb(222, 35, 35);
+}
+.yellow-status {
+  color: rgb(0, 187, 239);
+}
+.carousel-img {
+  height: 330px;       /* Cố định chiều cao */
+  object-fit: cover;   /* Đảm bảo hình ảnh giữ tỷ lệ */
+  width: 100%;         /* Đảm bảo hình ảnh chiếm toàn bộ chiều rộng */
+} 

@@ -1,0 +1,348 @@
+<div class="container mt-4">
+  <!-- Breadcrumb navigation -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a
+          style="
+            cursor: pointer;
+            text-decoration: underline;
+            color: rgb(56, 56, 211);
+          "
+          (click)="gotoHomePage()"
+          >Home</a
+        >
+      </li>
+      <li class="breadcrumb-item">
+        <a
+          style="
+            cursor: pointer;
+            text-decoration: underline;
+            color: rgb(56, 56, 211);
+          "
+          (click)="gotoSearch()"
+          >Search Results</a
+        >
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Car details</li>
+    </ol>
+  </nav>
+
+  <!-- Row to contain carousel and car details -->
+  <div class="row">
+    <div class="col-md-6">
+      <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="{{ car?.images }}"
+              class="d-block w-100 carousel-img fixed-size"
+              alt="..."
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="{{ car?.images }}"
+              class="d-block w-100 carousel-img fixed-size"
+              alt="..."
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="{{ car?.images }}"
+              class="d-block w-100 carousel-img fixed-size"
+              alt="..."
+            />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExample"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExample"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <div
+      class="col-md-6 d-flex flex-row justify-content-between align-items-center"
+    >
+      <!-- Car details section -->
+      <div class="car-details">
+        <h2>{{ car?.name }}</h2>
+        <div class="row">
+          <div class="col-3 mt-2" style="font-weight: bold">Rating:</div>
+          <div class="col-9 starr">
+            <i
+              *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+              class="bi bi-star-fill star"
+              [class.active]="avg > i"
+            ></i>
+          </div>
+        </div>
+        <div class="mb-2 d-flex">
+          <strong>No. of rides:</strong> <span>0</span>
+        </div>
+        <div class="mb-2 d-flex">
+          <strong>Price:</strong> <span>{{ getCarPrice() }}</span>
+        </div>
+        <div class="mb-2 d-flex">
+          <strong>Locations:</strong>
+          <span class="location-text">{{ getCarLocation() }}</span>
+        </div>
+        <div class="mb-2 d-flex">
+          <strong>Status:</strong> <span class="text-success">Available</span>
+        </div>
+      </div>
+      <!-- Button to rent the car -->
+      <div class="rent-button ms-3">
+        <a (click)="gotoBookCar()" class="btn btn-primary">Rent now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab navigation for additional information -->
+  <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="basic-info-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#basic-info"
+        type="button"
+        role="tab"
+        aria-controls="basic-info"
+        aria-selected="true"
+      >
+        Basic Information
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="details-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#details"
+        type="button"
+        role="tab"
+        aria-controls="details"
+        aria-selected="false"
+      >
+        Details
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="terms-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#terms"
+        type="button"
+        role="tab"
+        aria-controls="terms"
+        aria-selected="false"
+      >
+        Terms of use
+      </button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <!-- Basic Information Tab -->
+    <div
+      class="tab-pane fade show active"
+      id="basic-info"
+      role="tabpanel"
+      aria-labelledby="basic-info-tab"
+    >
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <p class="info-item">
+            <strong>License plate:</strong> <span>{{ car?.licensePlate }}</span>
+          </p>
+          <p class="info-item">
+            <strong>Brand name:</strong> <span>{{ car?.brand }}</span>
+          </p>
+          <p class="info-item">
+            <strong>Production year:</strong>
+            <span>{{ car?.productionYears }}</span>
+          </p>
+          <p class="info-item">
+            <strong>Transmission:</strong>
+            <span>{{ car?.transmissionType }}</span>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <p class="info-item">
+            <strong>Color:</strong> <span>{{ car?.color }}</span>
+          </p>
+          <p class="info-item">
+            <strong>Model:</strong> <span>{{ car?.model }}</span>
+          </p>
+          <p class="info-item">
+            <strong>No. of seats:</strong> <span>{{ car?.numberOfSeats }}</span>
+          </p>
+          <p class="info-item">
+            <strong>Fuel:</strong> <span>{{ car?.fuelType }}</span>
+          </p>
+        </div>
+      </div>
+      <!-- Documents Table -->
+      <h5>Documents:</h5>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Registration paper</td>
+            <td>Verified</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Certificate of Inspection</td>
+            <td>Verified</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Insurance</td>
+            <td>Not available</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Note about document availability -->
+      <p>
+        Note: Documents will be available for viewing after you've paid the
+        deposit to rent.
+      </p>
+    </div>
+
+    <!-- Details Tab -->
+    <div
+      class="tab-pane fade"
+      id="details"
+      role="tabpanel"
+      aria-labelledby="details-tab"
+    >
+      <div class="mt-4">
+        <p class="info-item">
+          <strong>Mileage:</strong>
+          <span>{{ formatNumber(car?.mileage) }}</span>
+        </p>
+        <p class="info-item">
+          <strong>Fuel consumption:</strong>
+          <span>{{ car?.fuelConsumption }}&nbsp;liter/100 km</span>
+        </p>
+        <p class="info-item">
+          <strong>Address:</strong> <span>{{ getCarLocation() }}</span>
+        </p>
+        <p class="info-item">
+          Note: Full address will be available after you've paid the deposit to
+          rent.
+        </p>
+        <p class="info-item"><strong>Description:</strong></p>
+        <span>{{ car?.description }}</span>
+
+        <h5>Additional functions:</h5>
+        <div class="row">
+          <div class="col-md-3">
+            <p>
+              <i class="fa-brands fa-bluetooth"></i>
+              <input type="checkbox" checked disabled /> Bluetooth
+            </p>
+            <p>
+              <i class="fa-solid fa-map-marker-alt"></i>
+              <input type="checkbox" disabled /> GPS
+            </p>
+            <p>
+              <i class="fa-solid fa-camera"></i>
+              <input type="checkbox" disabled /> Camera
+            </p>
+          </div>
+          <div class="col-md-3">
+            <p>
+              <i class="fa-solid fa-sun"></i>
+              <input type="checkbox" disabled /> Sun roof
+            </p>
+            <p>
+              <i class="fa-solid fa-lock-open"></i>
+              <input type="checkbox" checked disabled /> Child lock
+            </p>
+            <p>
+              <i class="fa-solid fa-child"></i>
+              <input type="checkbox" checked disabled /> Child seat
+            </p>
+          </div>
+          <div class="col-md-3">
+            <p>
+              <i class="fa-solid fa-compact-disc"></i>
+              <input type="checkbox" disabled /> DVD
+            </p>
+            <p>
+              <i class="fa-brands fa-usb"></i>
+              <input type="checkbox" disabled /> USB
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Terms of Use Tab -->
+    <div
+      class="tab-pane fade"
+      id="terms"
+      role="tabpanel"
+      aria-labelledby="terms-tab"
+    >
+      <div class="mt-4">
+        <p>
+          <strong>Base price:</strong>
+          <input
+            type="text"
+            class="price-input"
+            [value]="formatNumber(car?.basePrice)"
+            disabled
+          />
+          &nbsp; &nbsp; <strong> VND/Day </strong>
+        </p>
+        <p>
+          <strong>Required deposit:</strong>
+          <input
+            type="text"
+            class="deposit-input"
+            [value]="formatNumber(car?.deposit)"
+            disabled
+          />
+          &nbsp; &nbsp; <strong> VND </strong>
+        </p>
+
+        <h5>Terms of use</h5>
+        <div class="row">
+          <div class="col-md-3">
+            <p><input type="checkbox" checked disabled /> No smoking</p>
+            <p><input type="checkbox" checked disabled /> No pet</p>
+          </div>
+          <div class="col-md-3">
+            <p><input type="checkbox" disabled /> No food in car</p>
+            <p><input type="checkbox" disabled /> Other</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

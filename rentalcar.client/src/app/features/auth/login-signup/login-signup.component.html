@@ -1,0 +1,194 @@
+<div class="auth-background">
+  <div class="auth-container bg-white p-4">
+    <div class="auth-close">
+      <a href="/"><i class="fas fa-times"></i></a>
+    </div>
+    <div class="auth-header"></div>
+    <div class="auth-body">
+      <div class="auth-section text-center">
+        <h3>LOG IN USING YOUR ACCOUNT</h3>
+        <form (ngSubmit)="login()">
+          <div class="mb-4">
+            <input
+              type="email"
+              class="form-control custom-input"
+              placeholder="Your email address"
+              [(ngModel)]="emailLogin"
+              name="emailLogin"
+              required
+            />
+          </div>
+          <div class="mb-4 position-relative">
+            <input
+              type="password"
+              class="form-control custom-input"
+              id="loginPassword"
+              placeholder="Password"
+              [(ngModel)]="passwordLogin"
+              name="passwordLogin"
+              required
+            />
+            <span
+              class="eye-icon"
+              (click)="togglePasswordVisibility('loginPassword')"
+              ><i class="fa-solid fa-eye-slash"></i
+            ></span>
+          </div>
+          
+          <div class="mb-4 position-relative">
+            <i
+              ><a
+                href="javascript:void(0)"
+                class="d-block w-100 mb-4"
+                (click)="navigateToForgotPassword()"
+                >Forgot your password?</a
+              ></i
+            >
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary btn-blue"
+            style="padding: 3% 30%; font-size: 0.9rem; border-radius: 5px"
+          >
+            <i class="fa-solid fa-right-to-bracket"></i> LOG IN
+          </button>
+        </form>
+      </div>
+      <div class="auth-divider"></div>
+      <div class="auth-section text-center">
+        <h3 style="text-align: left">NOT A MEMBER YET?</h3>
+        <form (ngSubmit)="signUp()" style="text-align: left">
+          <div class="mb-4">
+            <input
+              type="text"
+              class="form-control custom-input"
+              placeholder="Your name"
+              [(ngModel)]="name"
+              name="name"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <input
+              type="email"
+              class="form-control custom-input"
+              placeholder="Your email address"
+              [(ngModel)]="email"
+              name="email"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <input
+              type="text"
+              class="form-control custom-input"
+              placeholder="Your phone number"
+              [(ngModel)]="phone"
+              name="phone"
+              required
+            />
+          </div>
+          <div class="mb-4 position-relative">
+            <input
+              type="password"
+              class="form-control custom-input"
+              id="registerPassword"
+              placeholder="Pick a password"
+              [(ngModel)]="registerPassword"
+              name="registerPassword"
+              required
+            />
+            <span
+              class="eye-icon"
+              (click)="togglePasswordVisibility('registerPassword')"
+            >
+              <i class="fa-solid fa-eye-slash"></i>
+            </span>
+          </div>
+          <h6 style="color: gray; text-align: left">
+            <i>Use at least one special character, one number.</i>
+          </h6>
+          <div class="mb-4 position-relative">
+            <input
+              type="password"
+              class="form-control custom-input"
+              id="confirmPassword"
+              placeholder="Confirm password"
+              [(ngModel)]="confirmPassword"
+              name="confirmPassword"
+              required
+            />
+            <span
+              class="eye-icon"
+              (click)="togglePasswordVisibility('confirmPassword')"
+            >
+              <i class="fa-solid fa-eye-slash"></i>
+            </span>
+          </div>
+          <div class="mb-4 d-flex justify-content-center">
+            <div class="form-check form-check-inline d-flex">
+              <div class="mx-3">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="role"
+                  id="rent"
+                  [(ngModel)]="role"
+                  value="rent"
+                />
+                <label class="form-check-label" for="rent"
+                  >I want to rent a car</label
+                >
+              </div>
+              &#160; &#160;
+              <div class="mx-3">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="role"
+                  id="owner"
+                  [(ngModel)]="role"
+                  value="owner"
+                />
+                <label class="form-check-labelown" for="owner"
+                  >I am a car owner</label
+                >
+              </div>
+            </div>
+          </div>
+          <div class="mb-4">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="agree"
+                required
+              />
+              <label class="form-check-label" for="agree">
+                I have read and agree with the
+                <i
+                  ><a href="javascript:void(0)" (click)="openTerms()"
+                    >Terms and Conditions</a
+                  ></i
+                >
+              </label>
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary btn-blue"
+            style="
+              padding: 3% 30%;
+              font-size: 0.9rem;
+              border-radius: 5px;
+              display: block;
+              margin: 0 auto;
+            "
+          >
+            <i class="fa-solid fa-user-plus"></i> SIGN UP
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

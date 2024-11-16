@@ -1,0 +1,301 @@
+<div class="Form1" *ngIf="userRole === 'guest' || !userRole">
+  <header class="bg-secondary py-5 text-white F1header">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>Looking for a vehicle? You're at the right place.</h1>
+          <p>
+            Choose between 100's of private cars for rent at really low prices!
+          </p>
+          <button class="btn btn-primary">Find a Rental Car Near You</button>
+        </div>
+        <div class="col-md-6">
+          <h1>Are you a car owner?</h1>
+          <p>List your car and make money from your asset today!</p>
+          <button class="btn btn-primary">List Your Car Today</button>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
+
+<div class="Form2" *ngIf="userRole === 'customer'">
+  <section class="bg-dark text-white py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>Looking for a vehicle? You're at the right place.</h1>
+          <p>
+            We have a large selection of locally owned cars available for you to
+            choose from. Rental plans are customised to suit your needs.
+          </p>
+          <p>
+            With over 300 cars located nationwide we will have something for
+            you.
+          </p>
+        </div>
+        <div class="col-md-6">
+          <div class="card p-4">
+            <h2>Find the ideal car rental for your trip</h2>
+            <form (ngSubmit)="gotoSearch()">
+              <div class="form-group">
+                <label for="location">PICK-UP LOCATION</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="location"
+                  [(ngModel)]="location"
+                  name="location"
+                  placeholder="Enter your location"
+                />
+              </div>
+              <div class="form-group">
+                <label for="pickup-date">PICK-UP DATE AND TIME</label>
+                <div class="input-group">
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="pickup-date"
+                    [(ngModel)]="pickupDate"
+                    name="pickupDate"
+                    placeholder="DD / MM / YYYY"
+                  />
+                  <div class="input-group-append">
+                    <span class="input-group-text">
+                      <i class="fa-sharp-duotone fa-solid fa-calendar-days"></i>
+                    </span>
+                  </div>
+                  <input
+                    type="time"
+                    class="form-control"
+                    id="pickup-time"
+                    [(ngModel)]="pickupTime"
+                    name="pickupTime"
+                    placeholder="HH:MM"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="dropoff-date">DROP-OFF DATE AND TIME</label>
+                <div class="input-group">
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="dropoff-date"
+                    [(ngModel)]="dropoffDate"
+                    name="dropoffDate"
+                    placeholder="DD / MM / YYYY"
+                  />
+                  <div class="input-group-append">
+                    <span class="input-group-text">
+                      <i class="fa-sharp-duotone fa-solid fa-calendar-days"></i>
+                    </span>
+                  </div>
+                  <input
+                    type="time"
+                    class="form-control"
+                    id="dropoff-time"
+                    [(ngModel)]="dropoffTime"
+                    name="dropoffTime"
+                    placeholder="HH:MM"
+                  />
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-block">
+                  SEARCH
+                </button>
+              </div>
+            </form>
+            
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="why-us py-5">
+    <div class="container">
+      <h2 class="mb-4"><b>Why us?</b></h2>
+      <div class="row text-center">
+        <div class="col-md-3">
+          <div class="card h-100">
+            <i
+              class="fas fa-money-bill-wave fa-3x my-3"
+              alt="Save Money Icon"
+            ></i>
+            <div class="card-body">
+              <h3>Save money</h3>
+              <p>
+                We have no setup or registration fees. You are only charged when
+                you rent a car, so get started for FREE!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card h-100">
+            <i class="fas fa-person fa-3x my-3" alt="Convenient Icon"></i>
+            <div class="card-body">
+              <h3>Convenient</h3>
+              <p>
+                We have a large selection of privately owned cars to suit your
+                needs throughout the country.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card h-100">
+            <i
+              class="fas fa-gavel fa-3x my-3"
+              alt="Legal and Insurance Icon"
+            ></i>
+            <div class="card-body">
+              <h3>Legal and insurance</h3>
+              <p>
+                We fully cover all rentals and even provide roadside assistance.
+                Our rating system and extended member profile checks provide
+                safety.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card h-100">
+            <i class="fas fa-headset fa-3x my-3" alt="24/7 Support Icon"></i>
+            <div class="card-body">
+              <h3>24/7 support</h3>
+              <p>
+                Our team is ready to support you all along the way with our 24/7
+                hotline and services.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="testimonials py-5 bg-light">
+    <div class="container">
+      <h2 class="mb-4"><b>What people say?</b></h2>
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="d-flex align-items-center bg-white p-3 h-100">
+            <img
+              src="image/IMG_1340.jpg"
+              class="rounded-circle mr-3"
+              alt="User 1"
+              style="width: 64px; height: 64px"
+            />
+            <div>
+              <p>"Great service! Will use again."</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="d-flex align-items-center bg-white p-3 h-100">
+            <img
+              src="image/IMG_1340.jpg"
+              class="rounded-circle mr-3"
+              alt="User 2"
+              style="width: 64px; height: 64px"
+            />
+            <div>
+              <p>"Affordable prices and excellent support."</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="d-flex align-items-center bg-white p-3 h-100">
+            <img
+              src="image/IMG_1340.jpg"
+              class="rounded-circle mr-3"
+              alt="User 3"
+              style="width: 64px; height: 64px"
+            />
+            <div>
+              <p>"Convenient and easy to use."</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="d-flex align-items-center bg-white p-3 h-100">
+            <img
+              src="image/IMG_1340.jpg"
+              class="rounded-circle mr-3"
+              alt="User 4"
+              style="width: 64px; height: 64px"
+            />
+            <div>
+              <p>"Highly recommend to others."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section *ngIf="userRole === 'carOwner'">
+  <div class="container">
+    <h1>Have a car for rent? Don't miss out on your benefit</h1>
+    <div class="features">
+      <div class="feature">
+        <i class="fa-solid fa-dollar-sign fa-2x my-3"></i>
+        <h3>How the insurance works</h3>
+        <p>
+          From the minute you hand the keys over till the second you get them
+          back you are covered. Your private insurance is not affected.
+        </p>
+      </div>
+      <div class="feature">
+        <i class="fa-solid fa-shield-halved fa-2x my-3"></i>
+        <h3>It's completely free</h3>
+        <p>
+          We offer both owners and renters free sign ups. It’s only once a
+          vehicle is rented out that a share is deducted to cover admin and
+          insurance.
+        </p>
+      </div>
+      <div class="feature">
+        <i class="fa-solid fa-square-check fa-2x my-3"></i>
+        <h3>You decide the price</h3>
+        <p>
+          When you list a car you decide the price. We can help with
+          recommendations as to price, but ultimately you decide!
+        </p>
+      </div>
+      <div class="feature">
+        <i class="fa-solid fa-car-rear fa-2x my-3"></i>
+        <h3>Handing over your vehicle</h3>
+        <p>
+          You arrange the time and location for the exchange of your vehicle
+          with the renter. Both parties will need to agree and sign the vehicle
+          rental sheet before and after key handover.
+        </p>
+      </div>
+      <div class="feature">
+        <i class="fa-solid fa-triangle-exclamation fa-2x my-3"></i>
+        <h3>You are in charge</h3>
+        <p>
+          All renters are pre-screened by us to ensure safety and get your
+          approval. If you do not feel comfortable with someone you are able to
+          decline a booking.
+        </p>
+      </div>
+      <div class="feature">
+        <i class="fa-regular fa-credit-card fa-2x my-3"></i>
+        <h3>Set payment</h3>
+        <p>
+          We pay you once a month and you can always view how much your car has
+          earned under your user profile.
+        </p>
+      </div>
+    </div>
+    <div class="text-start h3">Make money on your car right away</div>
+    <div class="cta">
+      <button (click)="gotoListCar()">List Your Car Today</button>
+    </div>
+  </div>
+</section>

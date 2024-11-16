@@ -1,0 +1,277 @@
+<div class="search-car">
+  <div class="container">
+    <!-- Hiển thị spinner khi đang tải -->
+    <div *ngIf="isLoading" class="loading-spinner">
+      <p>Loading cars, please wait...</p>
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <!-- Thanh trên cùng -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">
+          Search Result
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Phần tìm kiếm -->
+    <form (ngSubmit)="onSearch()" class="search-bar bg-dark text-white p-4 mb-3 rounded">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <h4>PICK-UP LOCATION</h4>
+          <input
+            type="text"
+            [(ngModel)]="location"
+            name="location"
+            class="form-control"
+            placeholder="Enter your location"
+            required
+          />
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <h4>PICK-UP DATE AND TIME</h4>
+          <div class="d-flex align-items-center">
+            <input
+              type="date"
+              [(ngModel)]="pickupDate"
+              name="pickupDate"
+              class="form-control mr-2"
+              required
+            />
+            <input
+              type="time"
+              [(ngModel)]="pickupTime"
+              name="pickupTime"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h4>DROP-OFF DATE AND TIME</h4>
+          <div class="d-flex align-items-center">
+            <input
+              type="date"
+              [(ngModel)]="dropoffDate"
+              name="dropoffDate"
+              class="form-control mr-2"
+              required
+            />
+            <input
+              type="time"
+              [(ngModel)]="dropoffTime"
+              name="dropoffTime"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+          <button type="submit" class="btn btn-primary btn-search">
+            SEARCH
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Phần đổi thumb và list -->
+    <div *ngIf="!isLoading" class="container">
+      <div class="search-results-header">
+        <div class="results-title">
+          <h1>Search Results</h1>
+          <p>There're {{ cars.length }} cars available for you!</p>
+        </div>
+        <div class="results-filters">
+          <div style="display: flex" class="mx-3">
+            <div class="actived filter" #process1>
+              <a style="margin-right: 10px">
+                <i class="fas fa-th"></i>
+              </a>
+            </div>
+            <div class="filter" #process2>
+              <a style="margin-right: 10px">
+                <i class="fas fa-th-list"></i>
+              </a>
+            </div>
+          </div>
+        <div class="results-filters">
+          <div class="sort-dropdown">
+            <select class="form-control" (change)="onSortChange($event)">
+              <option value="Star: High to Low">Star: High to Low</option>
+              <option value="Star: Low to High">Star: Low to High</option>
+              <option value="Price: Low to High">Price: Low to High</option>
+              <option value="Price: High to Low">Price: High to Low</option>
+            </select>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading" class="list-view content current" #listview>
+    <div class="container">
+      <table class="car-table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Ratings</th>
+            <th>No. of Rides</th>
+            <th>Price</th>
+            <th>Location</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let car of paginatedCars; let i = index">
+            <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+            <td>{{ car.name }}</td>
+            <td><img [src]="car.images" alt="Car Image" /></td>
+            <td>{{ car.ratings }}</td>
+            <td>{{ car.noOfRides }}</td>
+            <td>{{ car.basePrice }}K/day</td>
+            <td>{{ car.address }}</td>
+            <td>{{ car.active ? 'Available' : 'Not Available' }}</td>
+            <td>
+              <a (click)="gotoBookCar(car.id)" class="btn btn-success">Rent now</a>
+              <a (click)="gotoViewCarDetail(car.id)" class="btn btn-primary">View details</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading" class="thumbview content" #thumbview>
+    <div class="container">
+      <div class="outer-frame">
+        <div class="container car-list">
+          <div class="row car-item" *ngFor="let car of paginatedCars">
+            <div class="col-md-4">
+              <div
+                id="carouselExample"
+                class="carousel slide"
+                data-bs-ride="carousel"
+              >
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img
+                      [src]="car.images"
+                      class="d-block w-100 carousel-img fixed-size"
+                      alt="..."
+                    />
+                  </div>
+                  <!-- Thêm các hình ảnh khác nếu có -->
+                </div>
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselExample"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselExample"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="car-info">
+                <h2>{{ car.name }}</h2>
+                <div class="ratings">
+                  <span>Ratings:</span>
+                  <span class="stars">
+                    <div class="stars mb-2">
+                    <ng-container *ngFor="let star of createArray(car.ratings)">
+                      <span>★</span>
+                    </ng-container>
+                    <ng-container *ngFor="let emptyStar of createArray(5 - car.ratings)">
+                      <span>☆</span>
+                    </ng-container>
+                  </div></span>
+                  <span>({{ car.ratings }} stars)</span>
+                </div>
+                <div class="rides">
+                  <span>No. of rides:</span>
+                  <span>{{ car.noOfRides }}</span>
+                </div>
+                <div class="price">
+                  <span>Price:</span>
+                  <span>{{ car.basePrice }}K/day</span>
+                </div>
+                <div class="location">
+                  <span>Locations:</span>
+                  <span>{{ car.address }}</span>
+                </div>
+                <div class="status">
+                  <span>Status:</span>
+                  <span class="available">{{ car.active ? 'Available' : 'Not Available' }}</span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-md-3 d-flex flex-column justify-content-center align-items-start"
+            >
+              <button
+                class="rent-now btn btn-success mb-2"
+                (click)="gotoBookCar(car.id)"
+              >
+                Rent now
+              </button>
+              <button
+                class="view-details btn btn-primary"
+                (click)="gotoViewCarDetail(car.id)"
+              >
+                View details
+              </button>
+            </div>
+          </div>
+          <hr class="divider" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Phân trang -->
+  <div *ngIf="!isLoading" class="pagination d-flex justify-content-center mt-4">
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="goToPage(currentPage - 1)">«</a>
+      </li>
+      <li
+        *ngFor="let page of [].constructor(totalPages); let i = index"
+        class="page-item"
+        [class.active]="i + 1 === currentPage"
+      >
+        <a class="page-link" (click)="goToPage(i + 1)">{{ i + 1 }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" (click)="goToPage(currentPage + 1)">»</a>
+      </li>
+    </ul>
+  </div>
+</div>
